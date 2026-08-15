@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Smart</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { min-height: 100vh; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; }
+        .container { max-width: 500px; margin: auto; }
+        h1 { text-align: center; font-size: 2.5rem; margin-top: 30px; }
+        .tagline { text-align: center; margin-top: 10px; opacity: 0.9; font-size: 1rem; }
+        .menu { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        .btn { background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.25); color: white; padding: 18px 20px; border-radius: 14px; font-size: 1rem; cursor: pointer; text-align: left; transition: 0.3s; width: 100%; }
+        .btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .page { display: none; }
+        .page.active { display: block; }
+        .back-btn { background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.4); color: white; padding: 10px 20px; border-radius: 10px; font-size: 1rem; cursor: pointer; margin-bottom: 20px; }
+        h2 { text-align: center; margin-bottom: 20px; font-size: 1.5em; }
+        .chapter-item { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 15px 18px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; }
+        .chapter-item:hover { background: rgba(255,255,255,0.28); transform: translateY(-2px); }
+        .chapter-item .num { font-size: 0.8rem; opacity: 0.7; margin-bottom: 3px; }
+        .chapter-item .title { font-size: 1rem; font-weight: bold; }
+        .chapter-item .author { font-size: 0.85rem; opacity: 0.8; margin-top: 3px; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+        .tab-btn { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 20px; font-size: 0.95rem; cursor: pointer; transition: 0.3s; flex: 1; text-align: center; }
+        .tab-btn.active { background: white; color: #764ba2; font-weight: bold; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .note-item { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .note-q { font-weight: bold; font-size: 0.95rem; margin-bottom: 8px; color: #ffe066; line-height: 1.5; }
+        .note-a { font-size: 0.9rem; line-height: 1.7; opacity: 0.95; }
+        .section-title { font-size: 0.85rem; font-weight: bold; opacity: 0.6; margin: 18px 0 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .coming-soon { text-align: center; margin-top: 60px; opacity: 0.8; font-size: 1.1rem; line-height: 2; }
+
+        /* MCQ STYLES */
+        .mcq-score { text-align: center; font-size: 1.1rem; margin-bottom: 15px; background: rgba(255,255,255,0.15); border-radius: 12px; padding: 12px; }
+        .mcq-item { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .mcq-question { font-size: 0.95rem; margin-bottom: 10px; font-weight: bold; line-height: 1.5; }
+        .mcq-options { display: flex; flex-direction: column; gap: 8px; }
+        .mcq-option { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 10px 12px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .mcq-option:hover { background: rgba(255,255,255,0.2); }
+        .mcq-option.correct { background: rgba(0,200,100,0.35); border-color: #00c864; }
+        .mcq-option.wrong { background: rgba(255,60,60,0.35); border-color: #ff3c3c; }
+        .reset-btn { background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.4); color: white; padding: 10px 20px; border-radius: 10px; font-size: 1rem; cursor: pointer; width: 100%; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+    <div class="container">
+        <h1>📚 Score Smart</h1>
+        <p class="tagline">Master Karnataka 2nd PUC English with Notes, MCQs, Grammar, Model Papers & Progress Tracking.</p>
+        <p class="tagline">🎯 Score 90+ Easily!</p>
+        <div class="menu">
+            <button class="btn" onclick="showPage('chapterList')">📖 Chapter Notes</button>
+            <button class="btn" onclick="showPage('mcqList')">❓ MCQ Practice</button>
+            <button class="btn">✏️ Grammar Practice</button>
+            <button class="btn">📝 Model Papers</button>
+            <button class="btn">📄 Previous Year Papers</button>
+            <button class="btn">🗂️ Blueprint & Exam Pattern</button>
+            <button class="btn">📊 Progress Tracker</button>
+            <button class="btn">🌙 1 Day Before Exam Revision</button>
+        </div>
+    </div>
+</div>
+
+<!-- CHAPTER LIST PAGE -->
+<div id="chapterList" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="showPage('home')">← Back</button>
+        <h2>📖 Chapter Notes</h2>
+        <div onclick="showPage('chapter1')" class="chapter-item"><div class="num">Chapter 1 • Prose</div><div class="title">Romeo and Juliet</div><div class="author">William Shakespeare</div></div>
+        <div onclick="showPage('chapter2')" class="chapter-item"><div class="num">Chapter 2 • Prose</div><div class="title">Too Dear!</div><div class="author">Leo Tolstoy</div></div>
+        <div onclick="showPage('chapter3')" class="chapter-item"><div class="num">Chapter 3 • Poem</div><div class="title">On Children</div><div class="author">Khalil Gibran</div></div>
+        <div onclick="showPage('chapter4')" class="chapter-item"><div class="num">Chapter 4 • Prose</div><div class="title">Everything I Need to Know I Learned In the Forest</div><div class="author">Vandana Shiva</div></div>
+        <div onclick="showPage('chapter5')" class="chapter-item"><div class="num">Chapter 5 • Play</div><div class="title">A Sunny Morning</div><div class="author">Serafin and Joaquin Alvarez Quintero</div></div>
+        <div onclick="showPage('chapter6')" class="chapter-item"><div class="num">Chapter 6 • Poem</div><div class="title">When You Are Old</div><div class="author">W.B. Yeats</div></div>
+        <div onclick="showPage('chapter7')" class="chapter-item"><div class="num">Chapter 7 • Prose</div><div class="title">The Gardener</div><div class="author">P. Lankesh</div></div>
+        <div onclick="showPage('chapter8')" class="chapter-item"><div class="num">Chapter 8 • Poem</div><div class="title">To The Foot From Its Child</div><div class="author">Pablo Neruda</div></div>
+        <div onclick="showPage('chapter9')" class="chapter-item"><div class="num">Chapter 9 • Prose</div><div class="title">I Believe Books Will Never Disappear</div><div class="author">Robert Alfino with Jorge Luis Borges</div></div>
+        <div onclick="showPage('chapter10')" class="chapter-item"><div class="num">Chapter 10 • Poem</div><div class="title">Heaven, If You Are Not On Earth</div><div class="author">Kuvempu</div></div>
+        <div onclick="showPage('chapter11')" class="chapter-item"><div class="num">Chapter 11 • Prose</div><div class="title">Japan And Brazil Through A Traveler's Eye</div><div class="author">George Mikes</div></div>
+        <div onclick="showPage('chapter12')" class="chapter-item"><div class="num">Chapter 12 • Prose</div><div class="title">The Voter</div><div class="author">Chinua Achebe</div></div>
+        <div onclick="showPage('chapter13')" class="chapter-item"><div class="num">Chapter 13 • Prose</div><div class="title">Where There Is A Wheel</div><div class="author">P. Sainath</div></div>
+        <div onclick="showPage('chapter14')" class="chapter-item"><div class="num">Chapter 14 • Prose</div><div class="title">Water</div><div class="author">Challapalli Swaroopa Rani</div></div>
+    </div>
+</div>
+
+<!-- MCQ LIST PAGE -->
+<div id="mcqList" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="showPage('home')">← Back</button>
+        <h2>❓ MCQ Practice</h2>
+        <div onclick="showPage('mcq1');buildMCQ()" class="chapter-item"><div class="num">Chapter 1</div><div class="title">Romeo and Juliet</div><div class="author">25 Questions</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 2</div><div class="title">Too Dear!</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 3</div><div class="title">On Children</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 4</div><div class="title">Everything I Need to Know I Learned In the Forest</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 5</div><div class="title">A Sunny Morning</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 6</div><div class="title">When You Are Old</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 7</div><div class="title">The Gardener</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 8</div><div class="title">To The Foot From Its Child</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 9</div><div class="title">I Believe Books Will Never Disappear</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 10</div><div class="title">Heaven, If You Are Not On Earth</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 11</div><div class="title">Japan And Brazil Through A Traveler's Eye</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 12</div><div class="title">The Voter</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 13</div><div class="title">Where There Is A Wheel</div><div class="author">Coming Soon</div></div>
+        <div class="chapter-item" style="opacity:0.5;cursor:default;"><div class="num">Chapter 14</div><div class="title">Water</div><div class="author">Coming Soon</div></div>
+    </div>
+</div>
+
+<!-- MCQ CHAPTER 1 PAGE -->
+<div id="mcq1" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="showPage('mcqList')">← Back</button>
+        <h2>❓ Romeo and Juliet MCQ</h2>
+        <div class="mcq-score">Score: <span id="c1-score">0</span> / 25</div>
+        <div id="c1-mcq-list"></div>
+        <button class="reset-btn" onclick="resetMCQ()">🔄 Try Again</button>
+    </div>
+</div>
+
+<!-- CHAPTER 1 NOTES -->
+<div id="chapter1" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="showPage('chapterList')">← Back</button>
+        <h2>Romeo and Juliet</h2>
+        <p style="text-align:center;opacity:0.7;margin-bottom:18px;font-size:0.9rem;">William Shakespeare</p>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('c1-2mark', this)">✏️ 2 Marks</button>
+            <button class="tab-btn" onclick="showTab('c1-34mark', this)">📝 3/4 Marks</button>
+        </div>
+        <div id="c1-2mark" class="tab-content active">
+            <div class="section-title">📌 Important Questions</div>
+            <div class="note-item"><div class="note-q">1. Mention any two images to which Romeo compares Juliet.</div><div class="note-a">Romeo compares Juliet to "a rich jewel in an Ethiope's ear" and "a snowy dove among crows".</div></div>
+            <div class="note-item"><div class="note-q">2. Mention any two expressions that Juliet uses to glorify Romeo's charm.</div><div class="note-a">Juliet uses expressions like "day in night" and "whiter than snow on a raven's back" to glorify Romeo.</div></div>
+            <div class="note-item"><div class="note-q">3. Who are compared to 'a snowy dove' and 'crows' respectively?</div><div class="note-a">Juliet is compared to a snowy dove, while the other people in the hall are compared to crows.</div></div>
+            <div class="note-item"><div class="note-q">4. Mention any two qualities of night according to Juliet.</div><div class="note-a">Juliet describes night as gentle and loving because it helps her meet Romeo. She also calls it black-browed night as they meet secretly.</div></div>
+            <div class="note-item"><div class="note-q">5. What does all the world start doing and stop doing, according to Juliet, if Romeo becomes a star?</div><div class="note-a">If Romeo becomes a star, people will love the night more and stop admiring the bright sun.</div></div>
+            <div class="section-title">📘 Extra Practice</div>
+            <div class="note-item"><div class="note-q">1. Mention any two similes Romeo uses to describe Juliet's beauty.</div><div class="note-a">Romeo compares Juliet to "a rich jewel in an Ethiope's ear" and "a snowy dove among crows".</div></div>
+            <div class="note-item"><div class="note-q">2. What does Romeo intend to do after the measure is done?</div><div class="note-a">Romeo plans to watch Juliet's place and touch her hand to feel blessed.</div></div>
+            <div class="note-item"><div class="note-q">3. Whose hand is referred to as 'rude'? When would it be blessed?</div><div class="note-a">Romeo calls his own hand "rude". It will be blessed when he touches Juliet's hand after the dance.</div></div>
+            <div class="note-item"><div class="note-q">4. Who would all the world be in love with at night, according to Juliet? Why?</div><div class="note-a">According to Juliet, the world would love the night, because Romeo as a star would beautify the sky.</div></div>
+            <div class="note-item"><div class="note-q">5. When and how does Juliet expect Romeo to come?</div><div class="note-a">Juliet expects Romeo to come at night, like a bright star in the sky.</div></div>
+            <div class="note-item"><div class="note-q">6. What would people forget to worship, according to Juliet? Why?</div><div class="note-a">People would forget to worship the sun, because Romeo would make the night sky more beautiful.</div></div>
+        </div>
+        <div id="c1-34mark" class="tab-content">
+            <div class="note-item">
+                <div class="note-q">📖 Summary (3/4 Marks)</div>
+                <div class="note-a">Romeo and Juliet is one of Shakespeare's most romantic tragedies. The given extracts express the feelings of Romeo and Juliet when they see each other for the first time.<br><br>When Romeo sees Juliet on the dance floor, he is fascinated by her beauty. He feels that her beauty makes the torches burn bright and compares her to a rich jewel in an Ethiope's ear. He also compares her to a snowy dove among crows.<br><br>He decides to wait till the dance ends and then go to her and touch her hand, believing it will bless his rude hand. He realizes that he has never seen anyone as beautiful as Juliet before that night.<br><br>On the other hand, Juliet is also attracted towards Romeo and describes his charm. She calls him "day in night" and compares him to new snow on a raven's back. She asks the night to take Romeo to the sky and make him into little stars so that he will make the sky beautiful and charming. She feels that the whole world will fall in love with the night and stop worshipping the bright sun.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHAPTERS 2-14 NOTES coming soon -->
+<div id="chapter2" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>Too Dear!</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter3" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>On Children</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter4" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>Everything I Need to Know I Learned In the Forest</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter5" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>A Sunny Morning</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter6" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>When You Are Old</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter7" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>The Gardener</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter8" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>To The Foot From Its Child</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter9" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>I Believe Books Will Never Disappear</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter10" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>Heaven, If You Are Not On Earth</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter11" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>Japan And Brazil Through A Traveler's Eye</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter12" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>The Voter</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter13" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>Where There Is A Wheel</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+<div id="chapter14" class="page"><div class="container"><button class="back-btn" onclick="showPage('chapterList')">← Back</button><h2>Water</h2><p class="coming-soon">📝 Notes coming soon!</p></div></div>
+
+<script>
+const c1mcqs = [
+    { q: "According to Romeo, Juliet can teach ___ to burn bright.", opts: ["the sun", "the stars", "the torches", "the moon"], ans: 2 },
+    { q: "Romeo compares ___ to 'a snowy dove' among crows.", opts: ["a raven", "Rosaline", "Juliet", "an Ethiope"], ans: 2 },
+    { q: "The phrase 'face of heaven' refers to ___.", opts: ["Romeo", "a star", "the sun", "the sky"], ans: 0 },
+    { q: "The word 'garish' refers to ___.", opts: ["Romeo", "Juliet", "the sun", "the dancing girls"], ans: 2 },
+    { q: "When Romeo shines like a star, the world will ___ according to Juliet.", opts: ["not worship the garish sun", "fall in love with night", "keep staring at heaven", "pray for the moon"], ans: 1 },
+    { q: "Juliet ___ the torches to burn bright!", opts: ["hangs", "shows", "teaches", "loves"], ans: 2 },
+    { q: "Juliet is compared to ___ in an Ethiope's ear.", opts: ["a snowy dove", "a crow", "a rich jewel", "a burning torch"], ans: 2 },
+    { q: "'Beauty too rich for use.' It refers to ___.", opts: ["Romeo", "Juliet", "Rosaline", "the nurse"], ans: 1 },
+    { q: "The word 'measure' means ___.", opts: ["dance", "party", "night", "day"], ans: 0 },
+    { q: "'For I ne'er saw ___ till this night.'", opts: ["true beauty", "a snowy dove", "an Ethiope's ear", "a rich jewel"], ans: 0 },
+    { q: "Juliet says, 'Come night, come Romeo; ___.'", opts: ["thou night in day", "thou day in night", "on a raven's back", "upon the cheek of night"], ans: 1 },
+    { q: "Juliet shall take Romeo and cut him ___.", opts: ["make the face of heaven fine", "out in little stars", "upon the cheek of night", "on a raven's back"], ans: 1 },
+    { q: "According to Juliet, Romeo will make the face of ___ fine.", opts: ["stars", "heaven", "garish sun", "night"], ans: 1 },
+    { q: "According to Juliet, the world will be in love with ___.", opts: ["Romeo", "the garish sun", "night", "little stars"], ans: 2 },
+    { q: "'Did my heart love till now?' This was expressed by ___.", opts: ["Romeo", "Juliet", "Rosaline", "the nurse"], ans: 0 },
+    { q: "___ is compared to a rich jewel in an Ethiope's ear.", opts: ["Romeo", "Juliet", "Snowy dove", "Rosaline"], ans: 1 },
+    { q: "According to Romeo, Juliet is ___ in an Ethiope's ear.", opts: ["a snowy dove", "a rich jewel", "Yonder lady", "a crow"], ans: 1 },
+    { q: "According to Romeo, his hand would be blessed ___.", opts: ["when he touches her hands", "when he marries her", "when he attends the party", "when she dances with him"], ans: 0 },
+    { q: "After the dance is over, Romeo intends to ___.", opts: ["meet and talk to Juliet", "touch Juliet's hand", "watch Juliet's place of stand", "dance with her"], ans: 1 },
+    { q: "Juliet wants Romeo to be cut out in little stars when ___.", opts: ["he shall die", "she dances with him", "he touches Juliet's hand", "he marries her"], ans: 0 },
+    { q: "When Romeo shines as stars, the world will ___.", opts: ["worship the garish sun", "fall in love with night", "keep staring at the heaven", "have seen true beauty"], ans: 1 },
+    { q: "The phrase 'thou day in night' refers to ___.", opts: ["Juliet", "face of heaven", "Roseline", "Romeo"], ans: 3 },
+    { q: "Romeo feels that he had not seen ___ until he met Juliet.", opts: ["black-browed night", "Snowy Dove", "true beauty", "an Ethiope's ear"], ans: 2 },
+    { q: "'Cut him out in little stars' refers to ___.", opts: ["Juliet's death", "true beauty", "Romeo's death", "worshipping the garish sun"], ans: 2 },
+    { q: "Juliet hangs upon the cheek of night ___.", opts: ["as a rich Jewel in an Ethiope's ear", "as yonder lady", "like a snowy dove", "on a garish sun"], ans: 0 }
+];
+
+let c1answers = new Array(25).fill(null);
+
+function buildMCQ() {
+    const list = document.getElementById('c1-mcq-list');
+    c1answers = new Array(25).fill(null);
+    document.getElementById('c1-score').textContent = '0';
+    list.innerHTML = c1mcqs.map((mcq, i) => `
+        <div class="mcq-item">
+            <div class="mcq-question">${i+1}. ${mcq.q}</div>
+            <div class="mcq-options">
+                ${mcq.opts.map((opt, j) => `
+                    <div class="mcq-option" id="c1-opt-${i}-${j}" onclick="selectMCQ(${i}, ${j})">
+                        ${String.fromCharCode(97+j)}) ${opt}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+function selectMCQ(qIndex, optIndex) {
+    if (c1answers[qIndex] !== null) return;
+    c1answers[qIndex] = optIndex;
+    const correct = c1mcqs[qIndex].ans;
+    for (let j = 0; j < 4; j++) {
+        const el = document.getElementById(`c1-opt-${qIndex}-${j}`);
+        if (el) {
+            if (j === correct) el.classList.add('correct');
+            else if (j === optIndex && optIndex !== correct) el.classList.add('wrong');
+        }
+    }
+    const score = c1answers.filter((a, i) => a !== null && a === c1mcqs[i].ans).length;
+    document.getElementById('c1-score').textContent = score;
+}
+
+function resetMCQ() {
+    buildMCQ();
+    window.scrollTo(0, 0);
+}
+
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+function showTab(id, btn) {
+    const page = btn.closest('.page');
+    page.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    page.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
