@@ -1,4 +1,4 @@
-const CACHE_NAME = 'score-smart-v1';
+const CACHE_NAME = 'score-smart-v2';
 const urlsToCache = [
   './index.html',
   './manifest.json'
