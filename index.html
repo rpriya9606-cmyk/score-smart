@@ -140,16 +140,118 @@
         .popup-box h3 { font-size: 1.3rem; margin-bottom: 16px; }
         .popup-row { font-size: 0.95rem; margin: 8px 0; opacity: 0.9; }
         .popup-close { margin-top: 16px; padding: 12px 30px; background: white; color: #764ba2; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+
+        /* ===== v3 additions ===== */
+        .theme-btn { background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; }
+        body.dark { background: linear-gradient(135deg, #0c0e1a, #1a1230); }
+        body.dark .popup-box { background: linear-gradient(135deg, #222a55, #2a1b4a); }
+        .exam-card { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); border-radius: 14px; padding: 10px 14px; margin-top: 18px; }
+        .exam-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; font-size: 0.9rem; }
+        .exam-row + .exam-row { border-top: 1px solid rgba(255,255,255,0.15); }
+        .exam-days { font-weight: bold; color: #ffe066; white-space: nowrap; }
+        .exam-note { font-size: 0.72rem; opacity: 0.7; margin-top: 4px; line-height: 1.4; }
+        .home-search { margin-top: 18px; margin-bottom: 0; }
+        .sr-count { font-size: 0.85rem; opacity: 0.8; margin: 14px 0 8px; }
+        .sr-item { background: rgba(255,255,255,0.13); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; cursor: pointer; }
+        .sr-title { font-size: 0.78rem; opacity: 0.75; margin-bottom: 4px; }
+        .sr-snip { font-size: 0.9rem; line-height: 1.5; word-break: break-word; }
+        mark { background: #ffe066; color: #222; border-radius: 3px; padding: 0 2px; }
+        .flash { animation: ssflash 2.4s ease; }
+        @keyframes ssflash { 0%, 60% { box-shadow: 0 0 0 3px #ffe066; background: rgba(255,224,102,0.28); } 100% { box-shadow: 0 0 0 0 transparent; } }
+        .bm-host { position: relative; }
+        .bm-host > .note-q { padding-right: 34px; }
+        .bm-btn { position: absolute; top: 8px; right: 8px; background: none; border: none; color: #ffe066; font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 4px; }
+        .bm-btn::before { content: '\2606'; }
+        .bm-btn.on::before { content: '\2605'; }
+        .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: rgba(20,20,30,0.92); color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.88rem; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 90%; text-align: center; }
+        .toast.show { opacity: 1; }
+        .saved-card { margin-bottom: 16px; }
+        .saved-head { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; opacity: 0.85; margin-bottom: 6px; }
+        .saved-head span { flex: 1; }
+        .saved-open, .saved-rm { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: white; border-radius: 14px; padding: 4px 12px; font-size: 0.78rem; cursor: pointer; }
+        .result-box { background: rgba(255,255,255,0.15); border-radius: 14px; padding: 16px; margin-top: 16px; text-align: center; }
+        .result-score { font-size: 1.2rem; font-weight: bold; margin-bottom: 8px; }
+        .result-line { margin: 6px 0; font-size: 0.95rem; }
+        .review-panel { text-align: left; margin-top: 12px; }
+        .review-item { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+        .rv { font-size: 0.88rem; line-height: 1.5; margin-top: 6px; padding: 8px 10px; border-radius: 8px; }
+        .rv-wrong { background: rgba(255,60,60,0.3); border: 1px solid #ff3c3c; }
+        .rv-right { background: rgba(0,200,100,0.3); border: 1px solid #00c864; }
+        .p-tabs { display: flex; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 4px; margin-bottom: 12px; }
+        .p-tab { flex: 1; border: none; background: none; color: white; padding: 8px; border-radius: 16px; font-size: 0.92rem; cursor: pointer; }
+        .p-tab.active { background: white; color: #764ba2; font-weight: bold; }
+        .p-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+        .p-arrow { background: rgba(255,255,255,0.15); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; }
+        .p-arrow:disabled { opacity: 0.3; cursor: default; }
+        .p-label { font-weight: bold; font-size: 0.95rem; }
+        .ring-wrap { position: relative; width: 190px; height: 190px; margin: 8px auto; }
+        .ring { width: 100%; height: 100%; }
+        .ring-bg { fill: none; stroke: rgba(255,255,255,0.18); stroke-width: 12; }
+        .ring-fg { fill: none; stroke: #56e0a8; stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 0.6s; }
+        .ring-center { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .ring-time { font-size: 1.7rem; font-weight: bold; }
+        .ring-sub { font-size: 0.8rem; opacity: 0.75; margin-top: 2px; }
+        .ring-hint { text-align: center; font-size: 0.8rem; opacity: 0.65; min-height: 1em; }
+        .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 4px; }
+        .mini { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 10px 4px; text-align: center; }
+        .mini-v { font-weight: bold; font-size: 0.92rem; }
+        .mini-l { font-size: 0.7rem; opacity: 0.7; margin-top: 2px; }
+        .tag-row { margin: 9px 0; }
+        .tag-top { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 3px; gap: 8px; }
+        .tag-bar { background: rgba(255,255,255,0.15); border-radius: 6px; height: 8px; overflow: hidden; }
+        .tag-fill { height: 8px; border-radius: 6px; background: linear-gradient(90deg, #56c596, #00e0a0); }
+        .sub-title { font-size: 0.8rem; font-weight: bold; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.05em; margin: 16px 0 8px; }
+        .sess-row { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.88rem; }
+        .sess-sub { opacity: 0.7; font-size: 0.78rem; margin-top: 2px; }
+        .sess-dur { white-space: nowrap; font-weight: bold; }
+        .week-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .week-day { font-size: 0.8rem; width: 30px; opacity: 0.8; }
+        .week-bar { flex: 1; background: rgba(255,255,255,0.15); border-radius: 6px; height: 16px; overflow: hidden; }
+        .week-bar div { height: 16px; border-radius: 6px; }
+        .week-val { font-size: 0.78rem; opacity: 0.8; width: 52px; text-align: right; }
+        .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 10px; }
+        .badge { text-align: center; }
+        .medal { width: 68px; height: 68px; border-radius: 50%; margin: 0 auto 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.5rem; line-height: 1; }
+        .medal small { font-size: 0.7rem; font-weight: bold; margin-top: 3px; }
+        .badge.earned .medal { background: radial-gradient(circle at 30% 25%, #fff3b0, #ffc83d 55%, #e08a00); color: #4a2a00; box-shadow: 0 0 0 3px rgba(255,255,255,0.55), 0 4px 14px rgba(0,0,0,0.3); }
+        .badge.locked .medal { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.55); border: 2px dashed rgba(255,255,255,0.3); }
+        .b-name { font-size: 0.78rem; font-weight: bold; }
+        .b-sub { font-size: 0.7rem; opacity: 0.7; margin-top: 2px; }
+        .b-prog { height: 5px; background: rgba(255,255,255,0.2); border-radius: 4px; margin: 5px 4px 0; overflow: hidden; }
+        .b-prog div { height: 5px; background: #ffd86b; border-radius: 4px; }
+        .chip-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin: 12px 0 6px; }
+        .chip { padding: 10px 0; border-radius: 10px; border: 2px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.1); color: white; font-size: 0.9rem; cursor: pointer; }
+        .chip.done { background: #00a868; border-color: #00c864; font-weight: bold; }
+        .done-tag { font-size: 0.8rem; color: #7dffb5; margin-top: 4px; display: none; }
+        .done-tag.show { display: block; }
+        .done-btn { width: 100%; margin-top: 20px; padding: 14px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); color: white; font-size: 1rem; cursor: pointer; }
+        .done-btn.done { background: rgba(0,200,100,0.35); border-color: #00c864; }
+        .subj-wrap { position: relative; }
+        .subj-wrap .subject-btn { width: 100%; }
+        .subj-x { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; background: #ff4d4d; color: white; border: none; font-size: 0.7rem; cursor: pointer; }
+        .add-subj-btn { width: 100%; margin-top: 10px; padding: 11px; border-radius: 10px; border: 2px dashed rgba(255,255,255,0.4); background: none; color: white; font-size: 0.92rem; cursor: pointer; }
+        .add-row { display: flex; gap: 8px; margin-top: 10px; }
+        .add-row input { flex: 1; min-width: 0; padding: 10px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); color: white; font-size: 0.95rem; outline: none; }
+        .add-row input::placeholder { color: rgba(255,255,255,0.55); }
+        .danger-btn { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ff6b6b; background: rgba(255,60,60,0.15); color: white; font-size: 0.95rem; cursor: pointer; }
+        .empty-note { opacity: 0.65; font-size: 0.9rem; text-align: center; padding: 8px 0; }
+        .marks-tag { font-size: 0.78rem; color: #ffe066; margin-top: 5px; line-height: 1.4; }
+        .small-hint { font-size: 0.78rem; opacity: 0.65; line-height: 1.5; margin-top: 8px; }
     </style>
 </head>
 <body>
+<script>try{if(localStorage.getItem('ss_theme')==='dark')document.body.classList.add('dark');}catch(e){}</script>
 
 <div id="home" class="page active">
     <div class="container">
-        <h1>📚 Score Smart</h1>
+        <div style="text-align:right;"><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 Dark mode</button></div>
+        <h1 style="margin-top:10px;">📚 Score Smart</h1>
         <p class="tagline">Master Karnataka 2nd PUC English with Notes, MCQs, Grammar, Model Papers & Progress Tracking.</p>
         <p class="tagline">🎯 Score 90+ Easily!</p>
-        <div class="menu">
+        <div id="examCountdown"></div>
+        <input class="search-bar home-search" type="search" id="homeSearch" placeholder="🔍 Search notes, questions, grammar..." oninput="homeSearchInput(this.value)" autocomplete="off">
+        <div id="searchResults"></div>
+        <div class="menu" id="homeMenu">
             <button class="btn" onclick="showPage('chapterList')">📖 Chapter Notes</button>
             <button class="btn" onclick="showPage('mcqList')">❓ MCQ Practice</button>
             <button class="btn" onclick="showPage('grammar')">✏️ Grammar Practice</button>
@@ -157,6 +259,7 @@
             <button class="btn" onclick="showPage('prevPapers')">📄 Previous Year Papers</button>
             <button class="btn" onclick="showPage('blueprint')">🗂️ Blueprint & Exam Pattern</button>
             <button class="btn" onclick="showPage('progressTracker')">📊 Progress Tracker</button>
+            <button class="btn" onclick="showPage('savedPage')">🔖 My Saved</button>
             <button class="btn" onclick="showPage('oneDayRevision')">🌙 1 Day Before Exam Revision</button>
         </div>
     </div>
@@ -3185,10 +3288,88 @@
         <h2>🗂️ Blueprint & Exam Pattern</h2>
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">Karnataka 2nd PUC English 2026-27</p>
         <div class="note-item" style="text-align:center;">
-            <p style="margin-bottom:16px;opacity:0.9;">Click below to view the official Blueprint & Exam Pattern</p>
+            <p style="margin-bottom:16px;opacity:0.9;">Below is the blueprint in the app. You can also open the official file:</p>
             <a href="https://drive.google.com/file/d/11qMRHrva_JJDdK9v_afiql7pCDERfin8/view" target="_blank" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">📊 Open Blueprint & Exam Pattern</a>
         </div>
+        <div class="note-item" style="margin-top:20px;">
+            <div class="note-q">📚 Course Book (SPRINGS) — marks for each lesson</div>
+            <div class="note-a" style="margin-bottom:10px;font-size:0.82rem;opacity:0.85;">As given in the official 2026-27 blueprint. Tap a lesson to open its notes. ⭐ = lessons with 5 or more marks.</div>
+            <table class="grammar-table" style="font-size:0.78rem;">
+                <tr><th>No</th><th>Lesson</th><th>Marks</th><th>1 mk</th><th>2 mk</th><th>3 mk</th><th>4 mk</th></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter1')"><td>1</td><td style="text-align:left;">Romeo and Juliet</td><td><b>3</b></td><td>✔</td><td>✔</td><td>–</td><td>–</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter2')"><td>2</td><td style="text-align:left;">Too Dear! ⭐</td><td><b>5</b></td><td>✔</td><td>–</td><td>–</td><td>✔</td></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter3')"><td>3</td><td style="text-align:left;">On Children</td><td><b>3</b></td><td>✔</td><td>✔</td><td>–</td><td>–</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter4')"><td>4</td><td style="text-align:left;">Everything I Need to Know I Learned in the Forest ⭐</td><td><b>5</b></td><td>–</td><td>✔</td><td>✔</td><td>–</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter5')"><td>5</td><td style="text-align:left;">A Sunny Morning ⭐</td><td><b>8</b></td><td>✔</td><td>–</td><td>✔</td><td>✔</td></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter6')"><td>6</td><td style="text-align:left;">When You Are Old</td><td><b>3</b></td><td>–</td><td>–</td><td>✔</td><td>–</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter7')"><td>7</td><td style="text-align:left;">The Gardener ⭐</td><td><b>5</b></td><td>✔</td><td>–</td><td>–</td><td>✔</td></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter8')"><td>8</td><td style="text-align:left;">To the Foot from its Child</td><td><b>3</b></td><td>–</td><td>–</td><td>✔</td><td>–</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter9')"><td>9</td><td style="text-align:left;">I Believe Books Will Never Disappear ⭐</td><td><b>5</b></td><td>✔</td><td>–</td><td>–</td><td>✔</td></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter10')"><td>10</td><td style="text-align:left;">Heaven, If You Are Not Here on Earth</td><td><b>3</b></td><td>–</td><td>–</td><td>✔</td><td>–</td></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter11')"><td>11</td><td style="text-align:left;">Japan and Brazil Through a Traveller's Eye</td><td><b>4</b></td><td>✔</td><td>–</td><td>✔</td><td>–</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter12')"><td>12</td><td style="text-align:left;">The Voter ⭐</td><td><b>5</b></td><td>✔</td><td>–</td><td>–</td><td>✔</td></tr>
+<tr style="background:rgba(255,224,102,0.18);cursor:pointer;" onclick="showPage('chapter13')"><td>13</td><td style="text-align:left;">Where There Is a Wheel ⭐</td><td><b>5</b></td><td>✔</td><td>–</td><td>–</td><td>✔</td></tr>
+<tr style="cursor:pointer;" onclick="showPage('chapter14')"><td>14</td><td style="text-align:left;">Water</td><td><b>3</b></td><td>✔</td><td>✔</td><td>–</td><td>–</td></tr>
+                <tr><td></td><td style="text-align:left;"><b>Total</b></td><td><b>60</b></td><td colspan="4"></td></tr>
+            </table>
+            <div class="note-a" style="font-size:0.82rem;margin-top:10px;line-height:1.6;">⭐ <b>Most marks:</b> A Sunny Morning (8), then Too Dear!, Everything I Need to Know I Learned in the Forest, The Gardener, I Believe Books Will Never Disappear, The Voter and Where There Is a Wheel (5 each).<br>
+            <span style="opacity:0.8;">This only shows how the marks are spread in the blueprint. Any lesson can be asked, so study every lesson.</span></div>
+        </div>
+
+        <div class="note-item">
+            <div class="note-q">🔀 Internal choice — Course Book (SPRINGS)</div>
+            <table class="grammar-table" style="font-size:0.78rem;">
+                <tr><th>Question type</th><th>Question numbers</th><th>Questions given</th><th>To answer</th></tr>
+                <tr><td>1 mark (Part A)</td><td>1</td><td>10</td><td>All 10</td></tr>
+                <tr><td>2 marks (Part B)</td><td>14 to 17</td><td>4</td><td>Any 3</td></tr>
+                <tr><td>3 marks (Part B)</td><td>18 to 23</td><td>6</td><td>Any 4</td></tr>
+                <tr><td>4 marks (Part B)</td><td>24 to 29</td><td>6</td><td>Any 3</td></tr>
+            </table>
+        </div>
+
+        <div class="note-item">
+            <div class="note-q">📝 Work Book (STREAMS) — pattern</div>
+            <table class="grammar-table" style="font-size:0.78rem;">
+                <tr><th>No</th><th>Topic</th><th>Marks</th><th>Question type</th></tr>
+<tr><td>1–4</td><td style="text-align:left;">Articles or Preposition<br>Jumbled Segments<br>Subject-Verb Agreement<br>Tense</td><td>1 + 1 + 1 + 1</td><td style="text-align:left;font-size:0.76rem;">Four questions of 1 mark each</td></tr>
+<tr><td>5</td><td style="text-align:left;">Framing Questions</td><td>2</td><td style="text-align:left;font-size:0.76rem;">Two questions of 1 mark each</td></tr>
+<tr><td>6</td><td style="text-align:left;">Error Identification</td><td>2</td><td style="text-align:left;font-size:0.76rem;">Two questions of 1 mark each</td></tr>
+<tr><td>7</td><td style="text-align:left;">Expressions (Idioms)</td><td>2</td><td style="text-align:left;font-size:0.76rem;">Fill in the two blanks for 2 marks</td></tr>
+<tr><td>8</td><td style="text-align:left;">Passive Verbs</td><td>3</td><td style="text-align:left;font-size:0.76rem;">Fill in the three blanks for 3 marks</td></tr>
+<tr><td>9</td><td style="text-align:left;">Reported Speech</td><td>5</td><td style="text-align:left;font-size:0.76rem;">A conversation in Direct Speech containing five sentences to be changed to Indirect Speech. Each reported sentence carries 1 mark.</td></tr>
+<tr><td>10</td><td style="text-align:left;">Comprehension: Prose</td><td>9</td><td style="text-align:left;font-size:0.76rem;">An unseen prose passage of moderate length is given. Nine questions of 1 mark each are set on the passage.</td></tr>
+<tr><td>11</td><td style="text-align:left;">Comprehension: Poetry</td><td>9</td><td style="text-align:left;font-size:0.76rem;">One of the fifteen poems from the Work Book (STREAMS) is given. Nine questions of 1 mark each are set on it.</td></tr>
+<tr><td>12</td><td style="text-align:left;">Pronouns</td><td>5</td><td style="text-align:left;font-size:0.76rem;">Match the indicated pronouns with the nouns / noun phrases they refer to.</td></tr>
+<tr><td>13</td><td style="text-align:left;">Linkers</td><td>4</td><td style="text-align:left;font-size:0.76rem;">Fill in the four blanks with correct linkers given.</td></tr>
+<tr><td>14</td><td style="text-align:left;">Note Making</td><td>2</td><td style="text-align:left;font-size:0.76rem;">A flow chart with four blanks of ½ mark each.</td></tr>
+<tr><td>15</td><td style="text-align:left;">Dialogue Writing</td><td>3</td><td style="text-align:left;font-size:0.76rem;">Fill in the three missing parts of a conversation for 3 marks.</td></tr>
+<tr><td>16</td><td style="text-align:left;">Job Application</td><td>5</td><td style="text-align:left;font-size:0.76rem;">A job application is to be written along with a resume based on the advertisement given.</td></tr>
+<tr><td>17</td><td style="text-align:left;">Speech Writing</td><td>5</td><td style="text-align:left;font-size:0.76rem;">A speech is to be drafted based on the clues given.</td></tr>
+                <tr><td></td><td style="text-align:left;"><b>Total</b></td><td><b>60</b></td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="note-item">
+            <div class="note-q">🔀 Internal choice — Work Book (STREAMS)</div>
+            <table class="grammar-table" style="font-size:0.78rem;">
+                <tr><th>Part</th><th>Q.No</th><th>Choose between</th><th>Marks</th></tr>
+                <tr><td>C</td><td>30</td><td style="text-align:left;">A. Unseen Prose Passage<br>B. Poetry from the Work Book (STREAMS)</td><td>9 each</td></tr>
+                <tr><td>D</td><td>31</td><td style="text-align:left;">A. Rewrite as directed<br>B. Linkers</td><td>4 each</td></tr>
+                <tr><td>D</td><td>32</td><td style="text-align:left;">A. Framing Questions<br>B. Error Identification</td><td>2 each</td></tr>
+                <tr><td>E</td><td>36</td><td style="text-align:left;">A. Job Application<br>B. Speech Writing</td><td>5 each</td></tr>
+            </table>
+        </div>
         <p style="text-align:center;opacity:0.7;font-size:0.78rem;margin-top:22px;line-height:1.5;">Source: official website of the Pre-University Education Department, Karnataka (<a href="https://pue.karnataka.gov.in" target="_blank" rel="noopener" style="color:#90caf9;">pue.karnataka.gov.in</a>). Score Smart is an independent study app and is not affiliated with or endorsed by the Government of Karnataka or the Department.</p>
+    </div>
+</div>
+
+<!-- MY SAVED PAGE -->
+<div id="savedPage" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="showPage('home')">← Back</button>
+        <h2>🔖 My Saved</h2>
+        <p class="small-hint" style="text-align:center;margin:-8px 0 16px;">Questions you starred ☆ in Chapter Notes and Grammar. Use this list for quick revision.</p>
+        <div id="savedList"></div>
     </div>
 </div>
 
@@ -3198,40 +3379,14 @@
         <button class="back-btn" onclick="showPage('home')">← Back</button>
         <h2>📊 Progress Tracker</h2>
 
-        <!-- DASHBOARD -->
-        <div class="tracker-card">
-            <h3>🏠 Dashboard</h3>
-            <div class="stat-row"><span class="stat-label">📅 Today</span><span class="stat-value" id="todayTime">0h 0m</span></div>
-            <div class="stat-row"><span class="stat-label">📈 This Week</span><span class="stat-value" id="weekTime">0h 0m</span></div>
-            <div class="stat-row"><span class="stat-label">📆 This Month</span><span class="stat-value" id="monthTime">0h 0m</span></div>
-            <div class="stat-row"><span class="stat-label">🏆 Total Hours</span><span class="stat-value" id="totalTime">0h 0m</span></div>
-            <div class="stat-row"><span class="stat-label">🔥 Study Streak</span><span class="stat-value" id="streakDisplay">0 days</span></div>
-            <div class="stat-row"><span class="stat-label">🎯 Goal Completed</span><span class="stat-value" id="goalCompleted">0 days</span></div>
-        </div>
-
-        <!-- DAILY GOAL -->
-        <div class="tracker-card">
-            <h3>🎯 Daily Goal</h3>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
-                <button class="subject-btn" onclick="setGoal(60, this)">1 Hour</button>
-                <button class="subject-btn" onclick="setGoal(120, this)">2 Hours</button>
-                <button class="subject-btn" onclick="setGoal(240, this)">4 Hours</button>
-            </div>
-            <div class="goal-bar"><div class="goal-fill" id="goalFill" style="width:0%"></div></div>
-            <div style="text-align:center;font-size:0.9rem;font-weight:bold;margin-top:6px;" id="goalText">Set a goal to track progress</div>
-            <div style="text-align:center;font-size:0.85rem;opacity:0.7;margin-top:2px;" id="goalPctText"></div>
-        </div>
-
         <!-- SUBJECT SELECTION -->
         <div class="tracker-card">
             <h3>📚 Select Subject</h3>
-            <div class="subject-grid">
-                <button class="subject-btn" id="subj-English" onclick="selectSubject('English', this)">📕 English</button>
-                <button class="subject-btn" id="subj-Accountancy" onclick="selectSubject('Accountancy', this)">📘 Accountancy</button>
-                <button class="subject-btn" id="subj-Economics" onclick="selectSubject('Economics', this)">📗 Economics</button>
-                <button class="subject-btn" id="subj-Business" onclick="selectSubject('Business Studies', this)">📙 Business Studies</button>
-                <button class="subject-btn" id="subj-Kannada" onclick="selectSubject('Kannada', this)">📔 Kannada</button>
-                <button class="subject-btn" id="subj-CS" onclick="selectSubject('Computer Science', this)">💻 Computer Science</button>
+            <div class="subject-grid" id="subjectGrid"></div>
+            <button class="add-subj-btn" onclick="toggleAddSubject()">➕ Add subject</button>
+            <div class="add-row" id="addSubjectRow" style="display:none;">
+                <input id="newSubjectInput" type="text" maxlength="24" placeholder="e.g. Physics, Statistics" onkeydown="if(event.key==='Enter')addSubject()">
+                <button class="t-btn green" onclick="addSubject()">Add</button>
             </div>
             <input id="chapterInput" type="text" placeholder="📖 Chapter name (optional)" style="width:100%;margin-top:12px;padding:10px;border-radius:10px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:white;font-size:0.95rem;outline:none;">
         </div>
@@ -3248,16 +3403,70 @@
             </div>
         </div>
 
-        <!-- WEEKLY GRAPH -->
+        <!-- SUMMARY: DAY / WEEK / MONTH -->
         <div class="tracker-card">
-            <h3>📈 This Week</h3>
-            <div id="weeklyGraph"></div>
+            <div class="p-tabs">
+                <button class="p-tab active" id="ptab-day" onclick="setView('day')">Day</button>
+                <button class="p-tab" id="ptab-week" onclick="setView('week')">Week</button>
+                <button class="p-tab" id="ptab-month" onclick="setView('month')">Month</button>
+            </div>
+            <div class="p-nav">
+                <button class="p-arrow" onclick="shiftPeriod(-1)" aria-label="Earlier">‹</button>
+                <span class="p-label" id="periodLabel">Today</span>
+                <button class="p-arrow" id="navNext" onclick="shiftPeriod(1)" aria-label="Later" disabled>›</button>
+            </div>
+            <div class="ring-wrap">
+                <svg class="ring" viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+                    <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="314.16" transform="rotate(-90 60 60)"></circle>
+                </svg>
+                <div class="ring-center"><div class="ring-time" id="ringTime">0m</div><div class="ring-sub" id="ringSub">Study time</div></div>
+            </div>
+            <div class="ring-hint" id="ringHint"></div>
+            <div class="mini-stats">
+                <div class="mini"><div class="mini-v" id="streakDisplay">0 days</div><div class="mini-l">🔥 Streak</div></div>
+                <div class="mini"><div class="mini-v" id="totalTime">0h 0m</div><div class="mini-l">🏆 Total</div></div>
+                <div class="mini"><div class="mini-v" id="goalCompleted">0 days</div><div class="mini-l">🎯 Goal met</div></div>
+            </div>
+            <div id="periodBody"></div>
         </div>
 
-        <!-- RECENT SESSIONS -->
+        <!-- DAILY GOAL -->
         <div class="tracker-card">
-            <h3>📋 Recent Sessions</h3>
-            <div id="recentSessions"><p style="opacity:0.6;font-size:0.9rem;">No sessions yet. Start studying! 💪</p></div>
+            <h3>🎯 Daily Goal</h3>
+            <div id="goalBtns" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+                <button class="subject-btn" style="flex:1 1 auto;" data-min="30" onclick="setGoal(30)">30 min</button>
+                <button class="subject-btn" style="flex:1 1 auto;" data-min="60" onclick="setGoal(60)">1 Hour</button>
+                <button class="subject-btn" style="flex:1 1 auto;" data-min="120" onclick="setGoal(120)">2 Hours</button>
+                <button class="subject-btn" style="flex:1 1 auto;" data-min="240" onclick="setGoal(240)">4 Hours</button>
+            </div>
+            <div class="goal-bar"><div class="goal-fill" id="goalFill" style="width:0%"></div></div>
+            <div style="text-align:center;font-size:0.9rem;font-weight:bold;margin-top:6px;" id="goalText">Set a goal to track progress</div>
+            <div style="text-align:center;font-size:0.85rem;opacity:0.7;margin-top:2px;" id="goalPctText"></div>
+        </div>
+
+        <!-- BADGES -->
+        <div class="tracker-card">
+            <h3>🏅 Study Badges</h3>
+            <div class="badge-grid" id="badgeGrid"></div>
+            <p class="small-hint">Earn badges as your total study time grows.</p>
+        </div>
+
+        <!-- CHAPTER PROGRESS -->
+        <div class="tracker-card">
+            <h3>✅ Chapter Progress</h3>
+            <div class="stats-bar"><div class="stats-fill" id="chFill" style="width:0%"></div></div>
+            <div class="stats-text" id="chText" style="text-align:left;margin-top:6px;">0 / 14 chapters completed</div>
+            <div class="chip-grid" id="chapterChips"></div>
+            <p class="small-hint">Tap a chapter number to mark it completed (tap again to undo). You can also mark it at the bottom of each chapter's notes.</p>
+            <div class="stat-row" style="margin-top:8px;"><span class="stat-label">❓ MCQ tests finished</span><span class="stat-value" id="mcqDoneText">0 / 14</span></div>
+        </div>
+
+        <!-- RESET -->
+        <div class="tracker-card">
+            <h3>🗑️ Reset</h3>
+            <p class="small-hint" style="margin:0 0 10px;">Clears your study sessions, streak and badges on this phone. Your MCQ scores, saved questions and chapter ticks are kept.</p>
+            <button class="danger-btn" onclick="resetSummary()">Reset my study summary</button>
         </div>
     </div>
 </div>
@@ -3271,9 +3480,12 @@
         <div class="popup-row" id="popupDuration"></div>
         <div class="popup-row" id="popupGoal"></div>
         <div class="popup-row" id="popupMotivation" style="margin-top:10px;font-weight:bold;color:#ffe066;"></div>
+        <div class="popup-row" id="popupBadge" style="font-weight:bold;color:#ffd86b;"></div>
         <button class="popup-close" onclick="closePopup()">🎯 Keep Going!</button>
     </div>
 </div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 const mcqData = {
@@ -3666,6 +3878,17 @@ function updateScoreBadges() {
 }
 document.addEventListener('DOMContentLoaded', updateScoreBadges);
 
+function getResultBox(chapter) {
+    let el = document.getElementById(chapter + '-result');
+    if (!el) {
+        el = document.createElement('div');
+        el.id = chapter + '-result';
+        const list = document.getElementById(chapter + '-mcq-list');
+        list.parentNode.insertBefore(el, list.nextSibling);
+    }
+    return el;
+}
+
 function buildMCQ(chapter) {
     const data = mcqData[chapter];
     answers[chapter] = new Array(data.total).fill(null);
@@ -3676,6 +3899,7 @@ function buildMCQ(chapter) {
         mcq.opts.map((opt, j) => '<div class="mcq-option" id="' + chapter + '-opt-' + i + '-' + j + '" onclick="selectMCQ(\'' + chapter + '\', ' + i + ', ' + j + ')">' + String.fromCharCode(97+j) + ') ' + opt + '</div>').join('') +
         '</div></div>'
     ).join('');
+    getResultBox(chapter).innerHTML = '';
 }
 
 function selectMCQ(chapter, qIndex, optIndex) {
@@ -3692,15 +3916,60 @@ function selectMCQ(chapter, qIndex, optIndex) {
     const score = answers[chapter].filter((a, i) => a !== null && a === mcqData[chapter].questions[i].ans).length;
     document.getElementById(chapter + '-score').textContent = score;
 
-    // Update best score
-    const total = mcqData[chapter].total;
-    lastScores[chapter] = score;
-    saveScores('ss_mcq_last', lastScores);
-    if (bestScores[chapter] === undefined || score > bestScores[chapter]) {
-        bestScores[chapter] = score;
-        saveScores('ss_mcq_best', bestScores);
+    // When every question is answered: save the score and show the result + review button
+    if (answers[chapter].every(a => a !== null)) {
+        lastScores[chapter] = score;
+        saveScores('ss_mcq_last', lastScores);
+        if (bestScores[chapter] === undefined || score > bestScores[chapter]) {
+            bestScores[chapter] = score;
+            saveScores('ss_mcq_best', bestScores);
+        }
+        updateScoreBadges();
+        showResult(chapter, score);
+        if (typeof renderTracker === 'function') renderTracker();
     }
-    updateScoreBadges();
+}
+
+function showResult(chapter, score) {
+    const total = mcqData[chapter].total;
+    const pct = Math.round(score / total * 100);
+    const wrongCount = total - score;
+    let html = '<div class="result-box"><div class="result-score">🎉 Test complete!</div>' +
+        '<div class="result-line">Your score: <b>' + score + ' / ' + total + '</b> (' + pct + '%)</div>' +
+        '<div class="result-line">⭐ Best score: ' + bestScores[chapter] + ' / ' + total + '</div>';
+    if (wrongCount > 0) {
+        html += '<button class="reset-btn" id="' + chapter + '-review-btn" onclick="toggleReview(\'' + chapter + '\')">🔍 Review wrong answers (' + wrongCount + ')</button>' +
+                '<div class="review-panel" id="' + chapter + '-review" style="display:none;"></div>';
+    } else {
+        html += '<div class="result-line">🌟 Perfect score! No wrong answers.</div>';
+    }
+    html += '</div>';
+    const box = getResultBox(chapter);
+    box.innerHTML = html;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function toggleReview(chapter) {
+    const panel = document.getElementById(chapter + '-review');
+    const btn = document.getElementById(chapter + '-review-btn');
+    if (!panel) return;
+    const opening = panel.style.display === 'none';
+    if (opening && !panel.innerHTML) {
+        const qs = mcqData[chapter].questions;
+        let html = '';
+        answers[chapter].forEach((a, i) => {
+            const q = qs[i];
+            if (a === q.ans) return;
+            html += '<div class="review-item"><div class="mcq-question">' + (i+1) + '. ' + q.q + '</div>' +
+                '<div class="rv rv-wrong">❌ Your answer: ' + String.fromCharCode(97+a) + ') ' + q.opts[a] + '</div>' +
+                '<div class="rv rv-right">✅ Correct answer: ' + String.fromCharCode(97+q.ans) + ') ' + q.opts[q.ans] + '</div></div>';
+        });
+        panel.innerHTML = html;
+    }
+    panel.style.display = opening ? 'block' : 'none';
+    const n = answers[chapter].filter((a, i) => a !== mcqData[chapter].questions[i].ans).length;
+    if (btn) btn.textContent = opening ? '🙈 Hide wrong answers' : '🔍 Review wrong answers (' + n + ')';
+    if (opening) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function resetMCQ(chapter) {
@@ -3714,6 +3983,11 @@ function showPage(id) {
     window.scrollTo(0, 0);
     const searchInput = document.getElementById('chapterSearch');
     if (searchInput) { searchInput.value = ''; searchChapters(''); }
+    const hs = document.getElementById('homeSearch');
+    if (hs && hs.value) { hs.value = ''; runSearch(''); }
+    if (id === 'progressTracker') { renderTracker(); updateGoalBar(); }
+    if (id === 'savedPage') renderSaved();
+    if (id === 'home') updateCountdown();
 }
 
 function showPDF(id) {
@@ -3773,13 +4047,46 @@ function searchExpression(query) {
 // ===== END GRAMMAR =====
 
 // ===== PROGRESS TRACKER =====
-let timerInterval = null;
-let breakInterval = null;
-let timerSeconds = 0;
-let breakSeconds = 0;
-let isPaused = false;
+function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function lsGet(key, fallback) {
+    try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch (e) { return fallback; }
+}
+function lsSet(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+}
+function lsRemove(key) {
+    try { localStorage.removeItem(key); } catch (e) {}
+}
+function toast(msg) {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+const DEFAULT_SUBJECTS = [['English','📕'],['Accountancy','📘'],['Economics','📗'],['Business Studies','📙'],['Kannada','📔'],['Computer Science','💻']];
+const BADGES = [
+    { h: 1,   name: 'First Hour',         icon: '🌱' },
+    { h: 3,   name: 'Warming Up',         icon: '🔥' },
+    { h: 5,   name: 'Focused',            icon: '🎯' },
+    { h: 10,  name: 'Dedicated',          icon: '📚' },
+    { h: 25,  name: 'Achiever',           icon: '🏅' },
+    { h: 50,  name: 'Champion',           icon: '🏆' },
+    { h: 100, name: 'Score Smart Master', icon: '👑' }
+];
+
 let selectedSubject = '';
 let dailyGoalMinutes = 0;
+let timerInterval = null;
+let runState = null;      // running session: {subject, chapter, accMs, segStart, paused, breakMs, breakStart}
+let trackerView = 'day';
+let trackerOffset = 0;
+
+function startOfDay(d) { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; }
 
 function formatTime(secs) {
     const h = Math.floor(secs / 3600);
@@ -3787,222 +4094,718 @@ function formatTime(secs) {
     const s = secs % 60;
     return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
 }
-
 function formatHM(minutes) {
-    const h = Math.floor(minutes / 60);
-    const m = minutes % 60;
-    return h + 'h ' + m + 'm';
+    minutes = Math.round(minutes);
+    return Math.floor(minutes / 60) + 'h ' + (minutes % 60) + 'm';
+}
+function fmtMin(m) { return m < 60 ? Math.round(m) + 'm' : formatHM(m); }
+
+function getSessions() {
+    const s = lsGet('ss_sessions', []);
+    return Array.isArray(s) ? s.filter(x => x && typeof x.duration === 'number' && x.date) : [];
+}
+function totalMinutes() { return getSessions().reduce((a, s) => a + s.duration, 0); }
+function getTodayMinutes() {
+    const today = new Date().toDateString();
+    return getSessions().filter(s => new Date(s.date).toDateString() === today).reduce((a, s) => a + s.duration, 0);
 }
 
-function selectSubject(name, btn) {
-    selectedSubject = name;
-    document.querySelectorAll('#progressTracker .subject-btn').forEach(b => {
-        if (!['1 Hour','2 Hours','4 Hours'].includes(b.textContent.trim())) {
-            b.classList.remove('selected');
-            b.textContent = b.textContent.replace(' ✓', '');
+// ----- subjects -----
+function getCustomSubjects() {
+    const a = lsGet('ss_subjects', []);
+    return Array.isArray(a) ? a.filter(x => typeof x === 'string' && x) : [];
+}
+function renderSubjects() {
+    const grid = document.getElementById('subjectGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    const all = DEFAULT_SUBJECTS.map(s => ({ name: s[0], icon: s[1], custom: false }))
+        .concat(getCustomSubjects().map(n => ({ name: n, icon: '📒', custom: true })));
+    all.forEach(s => {
+        const wrap = document.createElement('div');
+        wrap.className = 'subj-wrap';
+        const b = document.createElement('button');
+        b.className = 'subject-btn' + (selectedSubject === s.name ? ' selected' : '');
+        b.textContent = s.icon + ' ' + s.name + (selectedSubject === s.name ? ' ✓' : '');
+        b.onclick = () => selectSubject(s.name);
+        wrap.appendChild(b);
+        if (s.custom) {
+            const x = document.createElement('button');
+            x.className = 'subj-x';
+            x.textContent = '✕';
+            x.setAttribute('aria-label', 'Remove ' + s.name);
+            x.onclick = () => removeSubject(s.name);
+            wrap.appendChild(x);
         }
+        grid.appendChild(wrap);
     });
-    btn.classList.add('selected');
-    if (!btn.textContent.includes('✓')) btn.textContent += ' ✓';
+}
+function selectSubject(name) {
+    if (runState) { alert('Please end your current session before changing the subject.'); return; }
+    selectedSubject = name;
+    renderSubjects();
+}
+function toggleAddSubject() {
+    const row = document.getElementById('addSubjectRow');
+    const show = row.style.display === 'none';
+    row.style.display = show ? 'flex' : 'none';
+    if (show) document.getElementById('newSubjectInput').focus();
+}
+function addSubject() {
+    const input = document.getElementById('newSubjectInput');
+    const name = input.value.replace(/\s+/g, ' ').trim();
+    if (!name) { toast('Type a subject name first'); return; }
+    const exists = DEFAULT_SUBJECTS.map(s => s[0]).concat(getCustomSubjects()).some(n => n.toLowerCase() === name.toLowerCase());
+    if (exists) { toast('That subject is already in the list'); return; }
+    const list = getCustomSubjects();
+    if (list.length >= 20) { toast('You can add up to 20 subjects'); return; }
+    list.push(name);
+    lsSet('ss_subjects', list);
+    input.value = '';
+    document.getElementById('addSubjectRow').style.display = 'none';
+    if (!runState) selectedSubject = name;
+    renderSubjects();
+    toast('Subject added: ' + name);
+}
+function removeSubject(name) {
+    if (runState && runState.subject === name) { alert('This subject is in use. End your current session first.'); return; }
+    if (!confirm('Remove "' + name + '" from your subject list?\n\nYour past study sessions are kept.')) return;
+    lsSet('ss_subjects', getCustomSubjects().filter(n => n !== name));
+    if (selectedSubject === name) selectedSubject = '';
+    renderSubjects();
 }
 
-function setGoal(minutes, btn) {
-    dailyGoalMinutes = minutes;
-    document.querySelectorAll('#progressTracker .subject-btn').forEach(b => {
-        if (['1 Hour','2 Hours','4 Hours'].includes(b.textContent.trim())) b.classList.remove('selected');
+// ----- daily goal -----
+function renderGoalButtons() {
+    document.querySelectorAll('#goalBtns .subject-btn').forEach(b => {
+        b.classList.toggle('selected', parseInt(b.dataset.min, 10) === dailyGoalMinutes);
     });
-    btn.classList.add('selected');
+}
+function setGoal(minutes) {
+    dailyGoalMinutes = (dailyGoalMinutes === minutes) ? 0 : minutes;
+    lsSet('ss_goal', dailyGoalMinutes);
+    renderGoalButtons();
     updateGoalBar();
+    renderTracker();
 }
-
 function updateGoalBar() {
+    const fill = document.getElementById('goalFill');
+    if (!fill) return;
     if (dailyGoalMinutes > 0) {
         const todayMins = getTodayMinutes();
         const pct = Math.min(100, Math.round((todayMins / dailyGoalMinutes) * 100));
-        const fill = document.getElementById('goalFill');
         fill.style.width = pct + '%';
-        // Color changes as progress increases
         if (pct < 30) fill.style.background = 'linear-gradient(90deg, #ff6b6b, #ff8e53)';
         else if (pct < 60) fill.style.background = 'linear-gradient(90deg, #f7971e, #ffd200)';
         else if (pct < 100) fill.style.background = 'linear-gradient(90deg, #56c596, #00e0a0)';
         else fill.style.background = 'linear-gradient(90deg, #667eea, #764ba2)';
         document.getElementById('goalText').textContent = formatHM(todayMins) + ' / ' + formatHM(dailyGoalMinutes);
-        document.getElementById('goalPctText').textContent = pct + '% Completed';
+        document.getElementById('goalPctText').textContent = pct + '% completed today';
+    } else {
+        fill.style.width = '0%';
+        document.getElementById('goalText').textContent = 'Set a goal to track progress';
+        document.getElementById('goalPctText').textContent = '';
     }
 }
 
+// ----- timer (uses real clock time, so it stays correct even if the phone sleeps) -----
+function elapsedMs() { return runState ? runState.accMs + (runState.paused ? 0 : Date.now() - runState.segStart) : 0; }
+function breakMsNow() { return runState ? runState.breakMs + (runState.paused ? Date.now() - runState.breakStart : 0) : 0; }
+function saveRun() { if (runState) lsSet('ss_running', runState); else lsRemove('ss_running'); }
+function tick() { document.getElementById('timerDisplay').textContent = formatTime(Math.floor(elapsedMs() / 1000)); }
+function startTicking() { clearInterval(timerInterval); timerInterval = setInterval(tick, 1000); }
+function setTimerButtons(state) {
+    document.getElementById('startBtn').disabled = state !== 'idle';
+    const pause = document.getElementById('pauseBtn');
+    const resume = document.getElementById('resumeBtn');
+    pause.style.display = state === 'paused' ? 'none' : 'inline-block';
+    pause.disabled = state !== 'running';
+    resume.style.display = state === 'paused' ? 'inline-block' : 'none';
+    resume.disabled = state !== 'paused';
+    document.getElementById('endBtn').disabled = state === 'idle';
+}
 function startTimer() {
+    if (runState) return;
     if (!selectedSubject) { alert('Please select a subject first!'); return; }
-    timerSeconds = 0; breakSeconds = 0; isPaused = false;
-    document.getElementById('startBtn').disabled = true;
-    document.getElementById('pauseBtn').disabled = false;
-    document.getElementById('endBtn').disabled = false;
-    timerInterval = setInterval(() => {
-        timerSeconds++;
-        document.getElementById('timerDisplay').textContent = formatTime(timerSeconds);
-    }, 1000);
+    runState = {
+        subject: selectedSubject,
+        chapter: (document.getElementById('chapterInput').value || '').trim() || 'General',
+        accMs: 0, segStart: Date.now(), paused: false, breakMs: 0, breakStart: 0
+    };
+    saveRun(); setTimerButtons('running'); tick(); startTicking();
 }
-
 function pauseTimer() {
-    clearInterval(timerInterval);
-    isPaused = true;
-    document.getElementById('pauseBtn').style.display = 'none';
-    document.getElementById('resumeBtn').style.display = 'inline-block';
-    document.getElementById('resumeBtn').disabled = false;
-    breakInterval = setInterval(() => breakSeconds++, 1000);
+    if (!runState || runState.paused) return;
+    const now = Date.now();
+    runState.accMs += now - runState.segStart;
+    runState.paused = true;
+    runState.breakStart = now;
+    saveRun(); setTimerButtons('paused'); tick();
 }
-
 function resumeTimer() {
-    clearInterval(breakInterval);
-    isPaused = false;
-    document.getElementById('resumeBtn').style.display = 'none';
-    document.getElementById('pauseBtn').style.display = 'inline-block';
-    timerInterval = setInterval(() => {
-        timerSeconds++;
-        document.getElementById('timerDisplay').textContent = formatTime(timerSeconds);
-    }, 1000);
+    if (!runState || !runState.paused) return;
+    const now = Date.now();
+    runState.breakMs += now - runState.breakStart;
+    runState.paused = false;
+    runState.segStart = now;
+    saveRun(); setTimerButtons('running'); tick();
 }
-
 function endSession() {
-    clearInterval(timerInterval);
-    clearInterval(breakInterval);
-    const duration = Math.floor(timerSeconds / 60);
+    if (!runState) return;
+    const duration = Math.floor(elapsedMs() / 60000);
     if (duration < 1) { alert('Study for at least 1 minute!'); return; }
-    const chapter = document.getElementById('chapterInput').value || 'General';
-    const session = { subject: selectedSubject, chapter: chapter, duration: duration, breakTime: Math.floor(breakSeconds / 60), date: new Date().toISOString() };
-    const sessions = JSON.parse(localStorage.getItem('ss_sessions') || '[]');
+    if (duration > 360 && !confirm('This session is ' + formatHM(duration) + ' long. Did you forget to stop the timer?\n\nPress OK to save it anyway, or Cancel to keep it running.')) return;
+    const beforeMins = totalMinutes();
+    const session = { subject: runState.subject, chapter: runState.chapter, duration: duration, breakTime: Math.floor(breakMsNow() / 60000), date: new Date().toISOString() };
+    const sessions = getSessions();
     sessions.push(session);
-    localStorage.setItem('ss_sessions', JSON.stringify(sessions));
-    updateStreak();
-    timerSeconds = 0; breakSeconds = 0;
+    lsSet('ss_sessions', sessions);
+    runState = null;
+    saveRun();
+    clearInterval(timerInterval);
     document.getElementById('timerDisplay').textContent = '00:00:00';
-    document.getElementById('startBtn').disabled = false;
-    document.getElementById('pauseBtn').disabled = true;
-    document.getElementById('pauseBtn').style.display = 'inline-block';
-    document.getElementById('resumeBtn').style.display = 'none';
-    document.getElementById('endBtn').disabled = true;
-    showSessionPopup(session);
-    updateDashboard();
+    setTimerButtons('idle');
+    const afterMins = beforeMins + duration;
+    const newBadges = BADGES.filter(b => beforeMins < b.h * 60 && afterMins >= b.h * 60);
+    showSessionPopup(session, newBadges);
+    trackerView = 'day'; trackerOffset = 0;
+    renderTracker();
     updateGoalBar();
-    loadRecentSessions();
-    buildWeeklyGraph();
 }
-
-function getTodayMinutes() {
-    const sessions = JSON.parse(localStorage.getItem('ss_sessions') || '[]');
-    const today = new Date().toDateString();
-    return sessions.filter(s => new Date(s.date).toDateString() === today).reduce((sum, s) => sum + s.duration, 0);
+function restoreRun() {
+    const r = lsGet('ss_running', null);
+    if (!r || typeof r !== 'object' || typeof r.accMs !== 'number' || typeof r.segStart !== 'number' || !r.subject) return;
+    runState = r;
+    selectedSubject = r.subject;
+    document.getElementById('chapterInput').value = r.chapter === 'General' ? '' : r.chapter;
+    setTimerButtons(r.paused ? 'paused' : 'running');
+    tick();
+    startTicking();
 }
+document.addEventListener('visibilitychange', () => { if (runState) tick(); });
 
-function getMotivation(duration, streak) {
-    if (duration >= 120) return '🔥 Amazing! Over 2 hours today — you\'re unstoppable!';
-    if (duration >= 60) return '⭐ Fantastic! 1 hour+ done — keep the momentum going!';
+function getMotivation(todayMins, streak) {
+    if (todayMins >= 120) return '🔥 Amazing! Over 2 hours today — you\'re unstoppable!';
+    if (todayMins >= 60) return '⭐ Fantastic! 1 hour+ done — keep the momentum going!';
     if (streak >= 7) return '🏆 ' + streak + '-day streak! You\'re on fire!';
     if (streak >= 3) return '🔥 ' + streak + '-day streak alive! Don\'t stop now!';
     return '💪 Great session! Every minute counts — keep going!';
 }
-
-function showSessionPopup(session) {
+function showSessionPopup(session, newBadges) {
     const todayMins = getTodayMinutes();
     const goalPct = dailyGoalMinutes > 0 ? Math.min(100, Math.round((todayMins / dailyGoalMinutes) * 100)) : null;
-    const streak = parseInt(localStorage.getItem('ss_streak') || '0');
     document.getElementById('popupSubject').textContent = '📚 Subject: ' + session.subject;
     document.getElementById('popupChapter').textContent = '📖 Chapter: ' + session.chapter;
     document.getElementById('popupDuration').textContent = '⏱️ Studied: ' + formatHM(session.duration) + (session.breakTime > 0 ? '  ☕ Break: ' + session.breakTime + 'm' : '');
     document.getElementById('popupGoal').textContent = goalPct !== null ? '🎯 Daily Goal: ' + goalPct + '% completed' : '📅 Today total: ' + formatHM(todayMins);
-    document.getElementById('popupMotivation').textContent = getMotivation(todayMins, streak);
+    document.getElementById('popupMotivation').textContent = getMotivation(todayMins, computeStreak());
+    document.getElementById('popupBadge').textContent = (newBadges && newBadges.length) ? '🏅 New badge unlocked: ' + newBadges.map(b => b.icon + ' ' + b.name).join(', ') : '';
     document.getElementById('sessionPopup').classList.add('show');
 }
+function closePopup() { document.getElementById('sessionPopup').classList.remove('show'); }
 
-function closePopup() {
-    document.getElementById('sessionPopup').classList.remove('show');
-}
-
-function updateDashboard() {
-    const sessions = JSON.parse(localStorage.getItem('ss_sessions') || '[]');
-    const today = new Date().toDateString();
-    const weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
-    const monthAgo = new Date(); monthAgo.setDate(monthAgo.getDate() - 30);
-    const todayMins = sessions.filter(s => new Date(s.date).toDateString() === today).reduce((sum, s) => sum + s.duration, 0);
-    const weekMins = sessions.filter(s => new Date(s.date) >= weekAgo).reduce((sum, s) => sum + s.duration, 0);
-    const monthMins = sessions.filter(s => new Date(s.date) >= monthAgo).reduce((sum, s) => sum + s.duration, 0);
-    const totalMins = sessions.reduce((sum, s) => sum + s.duration, 0);
-    // Count days goal was completed
-    const dayGroups = {};
-    sessions.forEach(s => { const d = new Date(s.date).toDateString(); dayGroups[d] = (dayGroups[d] || 0) + s.duration; });
-    const goalDays = dailyGoalMinutes > 0 ? Object.values(dayGroups).filter(m => m >= dailyGoalMinutes).length : 0;
-    document.getElementById('todayTime').textContent = formatHM(todayMins);
-    document.getElementById('weekTime').textContent = formatHM(weekMins);
-    document.getElementById('monthTime').textContent = formatHM(monthMins);
-    document.getElementById('totalTime').textContent = formatHM(totalMins);
-    document.getElementById('goalCompleted').textContent = goalDays + ' days';
-}
-
-function updateStreak() {
-    const sessions = JSON.parse(localStorage.getItem('ss_sessions') || '[]');
-    const dates = [...new Set(sessions.map(s => new Date(s.date).toDateString()))];
+// ----- summary (Day / Week / Month) -----
+function computeStreak() {
+    const dates = new Set(getSessions().map(s => new Date(s.date).toDateString()));
+    const d = new Date();
+    if (!dates.has(d.toDateString())) d.setDate(d.getDate() - 1);   // today not studied yet: streak continues from yesterday
     let streak = 0;
-    let d = new Date();
-    while (dates.includes(d.toDateString())) { streak++; d.setDate(d.getDate() - 1); }
-    localStorage.setItem('ss_streak', streak);
-    document.getElementById('streakDisplay').textContent = '🔥 ' + streak + ' days';
+    while (dates.has(d.toDateString())) { streak++; d.setDate(d.getDate() - 1); }
+    return streak;
+}
+function periodRange(view, offset) {
+    const now = new Date();
+    let start, end, label;
+    if (view === 'day') {
+        start = startOfDay(now); start.setDate(start.getDate() + offset);
+        end = new Date(start); end.setDate(end.getDate() + 1);
+        label = offset === 0 ? 'Today' : (offset === -1 ? 'Yesterday' : start.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }));
+    } else if (view === 'week') {
+        start = startOfDay(now);
+        start.setDate(start.getDate() - ((start.getDay() + 6) % 7) + offset * 7);   // week starts Monday
+        end = new Date(start); end.setDate(end.getDate() + 7);
+        const last = new Date(end); last.setDate(last.getDate() - 1);
+        label = offset === 0 ? 'This week' : start.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) + ' – ' + last.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+    } else {
+        start = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+        end = new Date(start.getFullYear(), start.getMonth() + 1, 1);
+        label = offset === 0 ? 'This month' : start.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+    }
+    return { start: start, end: end, label: label, days: Math.round((end - start) / 86400000) };
+}
+function setView(v) {
+    trackerView = v; trackerOffset = 0;
+    ['day', 'week', 'month'].forEach(x => document.getElementById('ptab-' + x).classList.toggle('active', x === v));
+    renderTracker();
+}
+function shiftPeriod(dir) {
+    trackerOffset = Math.min(0, trackerOffset + dir);
+    renderTracker();
+}
+function renderTracker() {
+    if (!document.getElementById('ringFg')) return;
+    const range = periodRange(trackerView, trackerOffset);
+    const all = getSessions();
+    const list = all.filter(s => { const d = new Date(s.date); return d >= range.start && d < range.end; });
+    const mins = list.reduce((a, s) => a + s.duration, 0);
+
+    document.getElementById('periodLabel').textContent = range.label;
+    document.getElementById('navNext').disabled = trackerOffset >= 0;
+    const target = dailyGoalMinutes > 0 ? dailyGoalMinutes * range.days : 0;
+    const frac = target > 0 ? Math.min(1, mins / target) : (mins > 0 ? 1 : 0);
+    document.getElementById('ringFg').style.strokeDashoffset = (314.16 * (1 - frac)).toFixed(2);
+    document.getElementById('ringTime').textContent = fmtMin(mins);
+    document.getElementById('ringSub').textContent = target > 0 ? Math.round(mins / target * 100) + '% of goal' : 'Study time';
+    document.getElementById('ringHint').textContent = dailyGoalMinutes > 0 ? '' : 'Set a daily goal below to fill the ring.';
+
+    // mini stats
+    const byDay = {};
+    all.forEach(s => { const k = new Date(s.date).toDateString(); byDay[k] = (byDay[k] || 0) + s.duration; });
+    const goalDays = dailyGoalMinutes > 0 ? Object.keys(byDay).filter(k => byDay[k] >= dailyGoalMinutes).length : 0;
+    document.getElementById('streakDisplay').textContent = computeStreak() + ' days';
+    document.getElementById('totalTime').textContent = formatHM(all.reduce((a, s) => a + s.duration, 0));
+    document.getElementById('goalCompleted').textContent = goalDays + ' days';
+
+    // subject tags
+    let html = '<div class="sub-title">Subjects</div>';
+    const bySub = {};
+    list.forEach(s => { bySub[s.subject] = (bySub[s.subject] || 0) + s.duration; });
+    const subs = Object.keys(bySub).sort((a, b) => bySub[b] - bySub[a]);
+    if (!subs.length) {
+        html += '<div class="empty-note">No study sessions here yet. Start the timer above! 💪</div>';
+    } else {
+        subs.forEach(n => {
+            const pct = Math.max(3, Math.round(bySub[n] / mins * 100));
+            html += '<div class="tag-row"><div class="tag-top"><span>' + esc(n) + '</span><span>' + fmtMin(bySub[n]) + '</span></div><div class="tag-bar"><div class="tag-fill" style="width:' + pct + '%"></div></div></div>';
+        });
+    }
+
+    if (trackerView === 'week') {
+        const names = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        const perDay = [];
+        for (let i = 0; i < 7; i++) {
+            const ds = new Date(range.start); ds.setDate(ds.getDate() + i);
+            perDay.push(byDay[ds.toDateString()] || 0);
+        }
+        const max = Math.max.apply(null, perDay);
+        html += '<div class="sub-title">Each day</div>';
+        perDay.forEach((m, i) => {
+            const w = max > 0 ? Math.round(m / max * 100) : 0;
+            const color = m >= 120 ? '#00e0a0' : m >= 60 ? '#ffd200' : '#8fa0ff';
+            html += '<div class="week-row"><span class="week-day">' + names[i] + '</span><div class="week-bar"><div style="width:' + w + '%;background:' + color + ';"></div></div><span class="week-val">' + (m > 0 ? fmtMin(m) : '—') + '</span></div>';
+        });
+    } else {
+        const shown = trackerView === 'day'
+            ? list.slice().sort((a, b) => new Date(a.date) - new Date(b.date))
+            : list.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 8);
+        if (shown.length) {
+            html += '<div class="sub-title">' + (trackerView === 'day' ? 'Sessions' : 'Latest sessions') + '</div>';
+            shown.forEach(s => {
+                const d = new Date(s.date);
+                const when = trackerView === 'day'
+                    ? d.toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit' })
+                    : d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                html += '<div class="sess-row"><div><div style="font-weight:bold;">' + esc(s.subject) + '</div><div class="sess-sub">' + esc(s.chapter || 'General') + ' • ' + when + '</div></div><div class="sess-dur">' + fmtMin(s.duration) + '</div></div>';
+            });
+        }
+    }
+    document.getElementById('periodBody').innerHTML = html;
+    renderBadges();
+    renderChapterProgress();
 }
 
-function loadRecentSessions() {
-    const sessions = JSON.parse(localStorage.getItem('ss_sessions') || '[]');
-    const recent = sessions.slice(-5).reverse();
-    const container = document.getElementById('recentSessions');
-    if (recent.length === 0) {
-        container.innerHTML = '<p style="opacity:0.6;font-size:0.9rem;">No sessions yet. Start studying! 💪</p>';
-        return;
-    }
-    container.innerHTML = recent.map(s => {
-        const d = new Date(s.date);
-        const dateStr = d.toDateString() === new Date().toDateString() ? 'Today' : d.toLocaleDateString('en-IN', {weekday:'short', day:'numeric', month:'short'});
-        return '<div class="note-item" style="margin-bottom:10px;padding:12px 14px;"><div style="font-size:0.8rem;opacity:0.6;margin-bottom:3px;">' + dateStr + '</div><div style="font-weight:bold;">' + s.subject + '</div><div style="font-size:0.85rem;opacity:0.8;">' + s.chapter + ' • ⏱️ ' + formatHM(s.duration) + '</div></div>';
+// ----- badges -----
+function badgeDates() {
+    const sorted = getSessions().slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+    let cum = 0;
+    const res = BADGES.map(() => null);
+    sorted.forEach(s => {
+        cum += s.duration;
+        BADGES.forEach((b, i) => { if (res[i] === null && cum >= b.h * 60) res[i] = new Date(s.date); });
+    });
+    return res;
+}
+function renderBadges() {
+    const grid = document.getElementById('badgeGrid');
+    if (!grid) return;
+    const total = totalMinutes();
+    const dates = badgeDates();
+    let nextShown = false;
+    grid.innerHTML = BADGES.map((b, i) => {
+        if (dates[i]) {
+            return '<div class="badge earned"><div class="medal">' + b.icon + '<small>' + b.h + 'h</small></div><div class="b-name">' + esc(b.name) + '</div><div class="b-sub">' + dates[i].toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) + '</div></div>';
+        }
+        let extra = '<div class="b-sub">Study ' + b.h + 'h</div>';
+        if (!nextShown) {
+            nextShown = true;
+            const pct = Math.min(100, Math.round(total / (b.h * 60) * 100));
+            extra = '<div class="b-prog"><div style="width:' + pct + '%"></div></div><div class="b-sub">' + formatHM(total) + ' / ' + b.h + 'h</div>';
+        }
+        return '<div class="badge locked"><div class="medal">🔒<small>' + b.h + 'h</small></div><div class="b-name">' + esc(b.name) + '</div>' + extra + '</div>';
     }).join('');
 }
 
-function buildWeeklyGraph() {
-    const sessions = JSON.parse(localStorage.getItem('ss_sessions') || '[]');
-    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const today = new Date();
+// ----- chapter progress -----
+function getDone() {
+    const d = lsGet('ss_done', {});
+    return (d && typeof d === 'object' && !Array.isArray(d)) ? d : {};
+}
+function toggleDone(n) {
+    const d = getDone();
+    if (d[n]) delete d[n]; else d[n] = true;
+    lsSet('ss_done', d);
+    refreshDone();
+    toast(d[n] ? '✅ Chapter ' + n + ' marked as completed' : 'Chapter ' + n + ' marked as not completed');
+}
+function setupChapterDone() {
+    for (let i = 1; i <= 14; i++) {
+        const item = document.querySelector('#chapterList .chapter-item[onclick="showPage(\'chapter' + i + '\')"]');
+        if (item && !item.querySelector('.done-tag')) {
+            const t = document.createElement('div');
+            t.className = 'done-tag'; t.id = 'done-tag-' + i; t.textContent = '✅ Completed';
+            item.appendChild(t);
+        }
+        const page = document.querySelector('#chapter' + i + ' .container');
+        if (page && !document.getElementById('done-btn-' + i)) {
+            const b = document.createElement('button');
+            b.className = 'done-btn'; b.id = 'done-btn-' + i;
+            b.onclick = () => toggleDone(i);
+            page.appendChild(b);
+        }
+    }
+}
+function refreshDone() {
+    const d = getDone();
+    for (let i = 1; i <= 14; i++) {
+        const t = document.getElementById('done-tag-' + i);
+        if (t) t.classList.toggle('show', !!d[i]);
+        const b = document.getElementById('done-btn-' + i);
+        if (b) { b.classList.toggle('done', !!d[i]); b.textContent = d[i] ? '✅ Chapter completed (tap to undo)' : '☐ Mark this chapter as completed'; }
+    }
+    renderChapterProgress();
+}
+function renderChapterProgress() {
+    const chips = document.getElementById('chapterChips');
+    if (!chips) return;
+    const d = getDone();
+    let count = 0;
     let html = '';
-    let maxMins = 0;
-    const data = [];
-    for (let i = 6; i >= 0; i--) {
-        const d = new Date(); d.setDate(today.getDate() - i);
-        const dateStr = d.toDateString();
-        const mins = sessions.filter(s => new Date(s.date).toDateString() === dateStr).reduce((sum, s) => sum + s.duration, 0);
-        data.push({ day: days[d.getDay()], mins });
-        if (mins > maxMins) maxMins = mins;
+    for (let i = 1; i <= 14; i++) {
+        if (d[i]) count++;
+        html += '<button class="chip' + (d[i] ? ' done' : '') + '" onclick="toggleDone(' + i + ')" aria-label="Chapter ' + i + '">' + i + '</button>';
     }
-    if (maxMins === 0) {
-        document.getElementById('weeklyGraph').innerHTML = '<p style="opacity:0.6;font-size:0.9rem;text-align:center;">Study to see your weekly graph! 📊</p>';
-        return;
-    }
-    html = data.map(d => {
-        const pct = Math.round((d.mins / maxMins) * 100);
-        const barColor = d.mins >= 120 ? '#00e0a0' : d.mins >= 60 ? '#ffd200' : '#667eea';
-        return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">' +
-            '<span style="font-size:0.8rem;width:30px;opacity:0.8;">' + d.day + '</span>' +
-            '<div style="flex:1;background:rgba(255,255,255,0.15);border-radius:6px;height:16px;overflow:hidden;">' +
-            '<div style="width:' + pct + '%;height:16px;background:' + barColor + ';border-radius:6px;transition:0.5s;"></div></div>' +
-            '<span style="font-size:0.78rem;opacity:0.8;width:40px;text-align:right;">' + (d.mins > 0 ? formatHM(d.mins) : '—') + '</span>' +
-            '</div>';
-    }).join('');
-    document.getElementById('weeklyGraph').innerHTML = html;
+    chips.innerHTML = html;
+    document.getElementById('chFill').style.width = Math.round(count / 14 * 100) + '%';
+    document.getElementById('chText').textContent = count + ' / 14 chapters completed';
+    document.getElementById('mcqDoneText').textContent = Object.keys(bestScores).length + ' / 14';
+}
+
+// ----- reset -----
+function resetSummary() {
+    if (runState) { alert('Please end your current study session first.'); return; }
+    if (!confirm('Reset your study summary?\n\nThis deletes all your study sessions, streak and badges on this phone. Your MCQ scores, saved questions and chapter ticks stay.\n\nThis cannot be undone.')) return;
+    lsRemove('ss_sessions');
+    lsRemove('ss_streak');
+    trackerView = 'day'; trackerOffset = 0;
+    ['day', 'week', 'month'].forEach(x => document.getElementById('ptab-' + x).classList.toggle('active', x === 'day'));
+    renderTracker();
+    updateGoalBar();
+    toast('Study summary reset');
 }
 
 function initTracker() {
-    updateDashboard();
-    loadRecentSessions();
-    buildWeeklyGraph();
-    const streak = localStorage.getItem('ss_streak') || 0;
-    document.getElementById('streakDisplay').textContent = '🔥 ' + streak + ' days';
+    dailyGoalMinutes = parseInt(lsGet('ss_goal', 0), 10) || 0;
+    renderGoalButtons();
+    renderSubjects();
+    setupChapterDone();
+    refreshDone();
+    restoreRun();
+    renderSubjects();
+    updateGoalBar();
+    renderTracker();
 }
-initTracker();
 // ===== END PROGRESS TRACKER =====
+
+// ===== V3: THEME, EXAM COUNTDOWN, SEARCH, BOOKMARKS =====
+function applyTheme(dark) {
+    document.body.classList.toggle('dark', dark);
+    const b = document.getElementById('themeBtn');
+    if (b) b.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', dark ? '#1a1230' : '#667eea');
+}
+function toggleTheme() {
+    const dark = !document.body.classList.contains('dark');
+    applyTheme(dark);
+    try { localStorage.setItem('ss_theme', dark ? 'dark' : 'light'); } catch (e) {}
+}
+
+// Exam dates: Karnataka 2nd PUC English, TENTATIVE timetable dated 08/10/2026. Change here if the board changes them.
+const EXAMS = [
+    { name: 'Exam 1', date: new Date(2027, 2, 1) },    // Mon, 1 March 2027
+    { name: 'Exam 2', date: new Date(2027, 4, 12) }    // Wed, 12 May 2027
+];
+function updateCountdown() {
+    const box = document.getElementById('examCountdown');
+    if (!box) return;
+    const today = startOfDay(new Date());
+    let html = '<div class="exam-card">';
+    EXAMS.forEach(ex => {
+        const days = Math.round((ex.date - today) / 86400000);
+        let txt;
+        if (days > 1) txt = days + ' days left';
+        else if (days === 1) txt = 'Tomorrow!';
+        else if (days === 0) txt = 'Today! All the best 🌟';
+        else txt = 'Completed ✅';
+        html += '<div class="exam-row"><span>📅 English ' + ex.name + '<br><span style="font-size:0.75rem;opacity:0.75;">' +
+            ex.date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) + ' • 10:00 AM</span></span><span class="exam-days">' + txt + '</span></div>';
+    });
+    html += '<div class="exam-note">Dates are from the board\'s tentative timetable and may change. Always check official notices.</div></div>';
+    box.innerHTML = html;
+}
+
+// ----- reveal an element inside its page (opens the right tab / section) -----
+function revealElement(el) {
+    const page = el.closest('.page');
+    if (!page) return;
+    showPage(page.id);
+    const tc = el.closest('.tab-content');
+    if (tc) {
+        const btn = Array.from(page.querySelectorAll('.tab-btn')).find(b => (b.getAttribute('onclick') || '').indexOf("'" + tc.id + "'") > -1);
+        if (btn) showTab(tc.id, btn);
+    }
+    const gs = el.closest('.grammar-section');
+    if (gs) {
+        const gb = Array.from(page.querySelectorAll('.grammar-tab')).find(b => (b.getAttribute('onclick') || '').indexOf("'" + gs.id + "'") > -1);
+        if (gb) showGrammarSection(gs.id, gb);
+    }
+    let acc = el.classList.contains('accordion') ? el : el.closest('.accordion');
+    while (acc) {
+        const body = acc.querySelector(':scope > .accordion-body');
+        const arrow = acc.querySelector(':scope > .accordion-header .accordion-arrow');
+        if (body) body.classList.add('open');
+        if (arrow) arrow.classList.add('open');
+        acc = acc.parentElement ? acc.parentElement.closest('.accordion') : null;
+    }
+    setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('flash');
+        setTimeout(() => el.classList.remove('flash'), 2500);
+    }, 60);
+}
+
+// ----- search -----
+let searchIndex = null;
+let searchHits = [];
+let searchTimer = null;
+function buildSearchIndex() {
+    searchIndex = [];
+    document.querySelectorAll('.page').forEach(page => {
+        if (page.id === 'home' || page.id === 'savedPage' || page.id === 'progressTracker') return;
+        const h = page.querySelector('h2');
+        const title = h ? h.textContent.trim() : page.id;
+        // navigation buttons / chapter links on this page
+        page.querySelectorAll('.chapter-item, .btn').forEach(el => {
+            if (!(el.getAttribute('onclick') || '').includes('showPage')) return;
+            let text;
+            if (el.classList.contains('chapter-item')) {
+                const parts = ['.num', '.title', '.author'].map(s => { const n = el.querySelector(s); return n ? n.textContent.trim() : ''; });
+                text = parts.filter(Boolean).join(' • ');
+            } else {
+                text = el.textContent.replace(/\s+/g, ' ').trim();
+            }
+            if (text.length < 2) return;
+            searchIndex.push({ nav: true, el: el, title: title, text: text, lower: text.toLowerCase() });
+        });
+        page.querySelectorAll('.note-item, .accordion, .practice-card, .formula-card').forEach(el => {
+            if (!el.classList.contains('accordion') && el.parentElement && el.parentElement.closest('.accordion')) return;
+            const text = el.textContent.replace(/\s+/g, ' ').trim();
+            if (text.length < 3) return;
+            searchIndex.push({ el: el, title: title, text: text, lower: text.toLowerCase() });
+        });
+    });
+    Object.keys(mcqData).forEach(ch => {
+        const page = 'mcq' + ch.slice(1);
+        const h = document.querySelector('#' + page + ' h2');
+        const title = h ? h.textContent.trim() : 'MCQ';
+        mcqData[ch].questions.forEach((q, i) => {
+            const text = q.q + '  (' + q.opts.join(' / ') + ')';
+            searchIndex.push({ mcq: ch, qi: i, page: page, title: title, text: text, lower: text.toLowerCase() });
+        });
+    });
+}
+function homeSearchInput(v) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => runSearch(v), 150);
+}
+function runSearch(raw) {
+    const q = (raw || '').trim().toLowerCase();
+    const menu = document.getElementById('homeMenu');
+    const box = document.getElementById('searchResults');
+    const ex = document.getElementById('examCountdown');
+    if (q.length < 2) {
+        box.innerHTML = ''; searchHits = [];
+        menu.style.display = ''; if (ex) ex.style.display = '';
+        return;
+    }
+    if (!searchIndex) buildSearchIndex();
+    menu.style.display = 'none'; if (ex) ex.style.display = 'none';
+    const words = q.split(/\s+/).filter(Boolean);
+    const hits = [];
+    for (const r of searchIndex) {
+        if (words.every(w => r.lower.includes(w))) hits.push(r);
+    }
+    hits.sort((a, b) => (b.nav ? 1 : 0) - (a.nav ? 1 : 0));
+    const shown = hits.slice(0, 40);
+    searchHits = shown;
+    if (!shown.length) {
+        box.innerHTML = '<div class="empty-note" style="margin-top:20px;">No results for "' + esc(raw.trim()) + '". Try a different word.</div>';
+        return;
+    }
+    const re = new RegExp('(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+    box.innerHTML = '<div class="sr-count">' + hits.length + ' result' + (hits.length > 1 ? 's' : '') + (hits.length > 40 ? ' (showing first 40)' : '') + '</div>' +
+        shown.map((r, i) => {
+            const idx = Math.max(0, r.lower.indexOf(words[0]));
+            const start = Math.max(0, idx - 30);
+            let snip = r.text.substr(start, 130);
+            if (start > 0) snip = '…' + snip;
+            if (start + 130 < r.text.length) snip += '…';
+            return '<div class="sr-item" onclick="openResult(' + i + ')"><div class="sr-title">' + esc(r.title) + '</div><div class="sr-snip">' + esc(snip).replace(re, '<mark>$1</mark>') + '</div></div>';
+        }).join('');
+}
+function openResult(i) {
+    const r = searchHits[i];
+    if (!r) return;
+    if (r.nav) { r.el.click(); return; }
+    if (r.mcq) {
+        showPage(r.page);
+        buildMCQ(r.mcq);
+        const opt = document.getElementById(r.mcq + '-opt-' + r.qi + '-0');
+        const item = opt ? opt.closest('.mcq-item') : null;
+        if (item) setTimeout(() => {
+            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            item.classList.add('flash');
+            setTimeout(() => item.classList.remove('flash'), 2500);
+        }, 60);
+        return;
+    }
+    revealElement(r.el);
+}
+
+// ----- bookmarks -----
+let bmIndex = null;
+function hashStr(s) {
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+    return (h >>> 0).toString(36);
+}
+function buildBookmarks() {
+    bmIndex = {};
+    document.querySelectorAll('.page .note-item').forEach(item => {
+        const q = item.querySelector(':scope > .note-q');
+        const page = item.closest('.page');
+        if (!q || !page || page.id === 'savedPage' || page.id === 'blueprint') return;
+        let id = page.id + '-' + hashStr(q.textContent.trim());
+        while (bmIndex[id]) id += 'x';
+        bmIndex[id] = item;
+        item.classList.add('bm-host');
+        const b = document.createElement('button');
+        b.className = 'bm-btn'; b.type = 'button'; b.dataset.id = id;
+        b.setAttribute('aria-label', 'Save this question');
+        item.insertBefore(b, item.firstChild);
+    });
+    refreshBookmarks();
+}
+function getSaved() {
+    const a = lsGet('ss_saved', []);
+    return Array.isArray(a) ? a : [];
+}
+function refreshBookmarks() {
+    const set = new Set(getSaved());
+    document.querySelectorAll('.bm-btn').forEach(b => b.classList.toggle('on', set.has(b.dataset.id)));
+}
+function toggleBookmark(id) {
+    const s = getSaved();
+    const i = s.indexOf(id);
+    if (i > -1) { s.splice(i, 1); toast('Removed from My Saved'); }
+    else { s.push(id); toast('Saved ★  Find it in "My Saved" on the home screen'); }
+    lsSet('ss_saved', s);
+    refreshBookmarks();
+    if (document.getElementById('savedPage').classList.contains('active')) renderSaved();
+}
+document.addEventListener('click', e => {
+    const b = e.target.closest ? e.target.closest('.bm-btn') : null;
+    if (b) { e.stopPropagation(); toggleBookmark(b.dataset.id); }
+});
+function renderSaved() {
+    const box = document.getElementById('savedList');
+    if (!bmIndex) buildBookmarks();
+    const ids = getSaved().slice().reverse().filter(id => bmIndex[id]);
+    if (!ids.length) {
+        box.innerHTML = '<div class="note-item" style="text-align:center;">Nothing saved yet.<br><br>Tap the ☆ star on any question in Chapter Notes or Grammar to save it here for quick revision before the exam.</div>';
+        return;
+    }
+    box.innerHTML = '';
+    ids.forEach(id => {
+        const el = bmIndex[id];
+        const page = el.closest('.page');
+        const h = page.querySelector('h2');
+        const wrap = document.createElement('div');
+        wrap.className = 'saved-card';
+        const head = document.createElement('div');
+        head.className = 'saved-head';
+        const src = document.createElement('span');
+        src.textContent = h ? h.textContent.trim() : '';
+        const open = document.createElement('button');
+        open.className = 'saved-open'; open.textContent = 'Open ›';
+        open.onclick = () => revealElement(el);
+        const rm = document.createElement('button');
+        rm.className = 'saved-rm'; rm.textContent = 'Remove';
+        rm.onclick = () => toggleBookmark(id);
+        head.appendChild(src); head.appendChild(open); head.appendChild(rm);
+        const clone = el.cloneNode(true);
+        const cb = clone.querySelector('.bm-btn');
+        if (cb) cb.remove();
+        clone.classList.remove('bm-host', 'flash');
+        clone.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
+        wrap.appendChild(head); wrap.appendChild(clone);
+        box.appendChild(wrap);
+    });
+}
+
+
+// ----- marks guide on chapters (from the official 2026-27 blueprint) -----
+const BLUEPRINT_MARKS = {"1": {"m": 3, "t": "1 mark + 2 marks"}, "2": {"m": 5, "t": "1 mark + 4 marks"}, "3": {"m": 3, "t": "1 mark + 2 marks"}, "4": {"m": 5, "t": "2 marks + 3 marks"}, "5": {"m": 8, "t": "1 mark + 3 marks + 4 marks"}, "6": {"m": 3, "t": "3 marks"}, "7": {"m": 5, "t": "1 mark + 4 marks"}, "8": {"m": 3, "t": "3 marks"}, "9": {"m": 5, "t": "1 mark + 4 marks"}, "10": {"m": 3, "t": "3 marks"}, "11": {"m": 4, "t": "1 mark + 3 marks"}, "12": {"m": 5, "t": "1 mark + 4 marks"}, "13": {"m": 5, "t": "1 mark + 4 marks"}, "14": {"m": 3, "t": "1 mark + 2 marks"}};
+function setupMarksTags() {
+    Object.keys(BLUEPRINT_MARKS).forEach(n => {
+        const info = BLUEPRINT_MARKS[n];
+        const hi = info.m >= 5;
+        const text = '📊 ' + info.m + ' marks in the blueprint • ' + info.t + (info.m >= 8 ? ' • ⭐ Highest weightage' : (hi ? ' • ⭐ High weightage' : ''));
+        const item = document.querySelector('#chapterList .chapter-item[onclick="showPage(\'chapter' + n + '\')"]');
+        if (item && !item.querySelector('.marks-tag')) {
+            const d = document.createElement('div');
+            d.className = 'marks-tag'; d.textContent = text;
+            item.appendChild(d);
+        }
+        const h = document.querySelector('#chapter' + n + ' .container > h2');
+        if (h && !document.getElementById('marks-line-' + n)) {
+            const d = document.createElement('div');
+            d.className = 'marks-tag'; d.id = 'marks-line-' + n; d.style.textAlign = 'center'; d.style.marginBottom = '14px'; d.textContent = text;
+            h.parentNode.insertBefore(d, h.nextElementSibling && h.nextElementSibling.tagName === 'P' ? h.nextElementSibling.nextSibling : h.nextSibling);
+        }
+    });
+}
+
+// ===== START UP =====
+(function initAll() {
+    try { applyTheme(localStorage.getItem('ss_theme') === 'dark'); } catch (e) { applyTheme(false); }
+    setupMarksTags();
+    buildBookmarks();
+    initTracker();
+    updateCountdown();
+    updateScoreBadges();
+})();
+
 
 // ===== PWA SERVICE WORKER REGISTRATION =====
 if ('serviceWorker' in navigator) {
