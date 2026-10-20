@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score Smart</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#0b4f9c">
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
     <link rel="apple-touch-icon" href="icon-192.png">
     <style>
+        :root {
+            --bg1: #0b4f9c;        /* page background, top */
+            --bg2: #12306b;        /* page background, bottom */
+            --brand: #1d6fd1;      /* popup / highlights */
+            --brand-dark: #12306b; /* text on white buttons and active tabs */
+            --accent: #ffd447;     /* numbers and highlights */
+            --nav-bg: #0a2650;     /* bottom bar */
+            --dark1: #070d1c;      /* dark mode background */
+            --dark2: #0f1b3a;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { min-height: 100vh; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; }
+        body { min-height: 100vh; background: linear-gradient(160deg, var(--bg1), var(--bg2)); background-attachment: fixed; color: white; padding: 20px 20px calc(96px + env(safe-area-inset-bottom)); }
         .container { max-width: 500px; margin: auto; }
         h1 { text-align: center; font-size: 2.5rem; margin-top: 30px; }
         .tagline { text-align: center; margin-top: 10px; opacity: 0.9; font-size: 1rem; }
@@ -28,7 +38,7 @@
         .chapter-item .author { font-size: 0.85rem; opacity: 0.8; margin-top: 3px; }
         .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
         .tab-btn { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 20px; font-size: 0.95rem; cursor: pointer; transition: 0.3s; flex: 1; text-align: center; }
-        .tab-btn.active { background: white; color: #764ba2; font-weight: bold; }
+        .tab-btn.active { background: white; color: var(--brand-dark); font-weight: bold; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .note-item { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
@@ -104,7 +114,7 @@
         .badge-orange { background: rgba(255,140,0,0.3); color: #ffa500; border: 1px solid #ffa500; display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; }
         .grammar-tabs { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
         .grammar-tab { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.25); color: white; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; white-space: nowrap; }
-        .grammar-tab.active { background: white; color: #764ba2; font-weight: bold; }
+        .grammar-tab.active { background: white; color: var(--brand-dark); font-weight: bold; }
         .grammar-section { display: none; }
         .grammar-section.active { display: block; }
 
@@ -126,7 +136,7 @@
         .t-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .subject-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .subject-btn { padding: 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.12); color: white; font-size: 0.9rem; cursor: pointer; text-align: center; transition: 0.2s; }
-        .subject-btn.selected { background: white; color: #764ba2; font-weight: bold; border-color: white; }
+        .subject-btn.selected { background: white; color: var(--brand-dark); font-weight: bold; border-color: white; }
         .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .stat-row:last-child { border-bottom: none; }
         .stat-label { font-size: 0.9rem; opacity: 0.8; }
@@ -136,15 +146,16 @@
         .goal-fill { height: 12px; border-radius: 20px; background: linear-gradient(90deg, #56c596, #00e0a0); transition: width 0.5s; }
         .session-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; justify-content: center; align-items: center; }
         .session-popup.show { display: flex; }
-        .popup-box { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 20px; padding: 24px; max-width: 340px; width: 90%; text-align: center; }
+        .popup-box { background: linear-gradient(135deg, var(--brand), var(--brand-dark)); border-radius: 20px; padding: 24px; max-width: 340px; width: 90%; text-align: center; }
         .popup-box h3 { font-size: 1.3rem; margin-bottom: 16px; }
         .popup-row { font-size: 0.95rem; margin: 8px 0; opacity: 0.9; }
-        .popup-close { margin-top: 16px; padding: 12px 30px; background: white; color: #764ba2; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+        .popup-close { margin-top: 16px; padding: 12px 30px; background: white; color: var(--brand-dark); border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; }
 
         /* ===== v3 additions ===== */
         .theme-btn { background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; }
-        body.dark { background: linear-gradient(135deg, #0c0e1a, #1a1230); }
-        body.dark .popup-box { background: linear-gradient(135deg, #222a55, #2a1b4a); }
+        body.dark { background: linear-gradient(160deg, var(--dark2), var(--dark1)); background-attachment: fixed; }
+        body.dark .popup-box { background: linear-gradient(135deg, #16254f, #0f1b3a); }
+        body.dark .bottom-nav { background: #050a16; }
         .exam-card { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); border-radius: 14px; padding: 10px 14px; margin-top: 18px; }
         .exam-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; font-size: 0.9rem; }
         .exam-row + .exam-row { border-top: 1px solid rgba(255,255,255,0.15); }
@@ -163,7 +174,7 @@
         .bm-btn { position: absolute; top: 8px; right: 8px; background: none; border: none; color: #ffe066; font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 4px; }
         .bm-btn::before { content: '\2606'; }
         .bm-btn.on::before { content: '\2605'; }
-        .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: rgba(20,20,30,0.92); color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.88rem; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 90%; text-align: center; }
+        .toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); background: rgba(20,20,30,0.92); color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.88rem; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 90%; text-align: center; }
         .toast.show { opacity: 1; }
         .saved-card { margin-bottom: 16px; }
         .saved-head { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; opacity: 0.85; margin-bottom: 6px; }
@@ -179,7 +190,7 @@
         .rv-right { background: rgba(0,200,100,0.3); border: 1px solid #00c864; }
         .p-tabs { display: flex; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 4px; margin-bottom: 12px; }
         .p-tab { flex: 1; border: none; background: none; color: white; padding: 8px; border-radius: 16px; font-size: 0.92rem; cursor: pointer; }
-        .p-tab.active { background: white; color: #764ba2; font-weight: bold; }
+        .p-tab.active { background: white; color: var(--brand-dark); font-weight: bold; }
         .p-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
         .p-arrow { background: rgba(255,255,255,0.15); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; }
         .p-arrow:disabled { opacity: 0.3; cursor: default; }
@@ -236,6 +247,30 @@
         .danger-btn { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ff6b6b; background: rgba(255,60,60,0.15); color: white; font-size: 0.95rem; cursor: pointer; }
         .empty-note { opacity: 0.65; font-size: 0.9rem; text-align: center; padding: 8px 0; }
         .marks-tag { font-size: 0.78rem; color: #ffe066; margin-top: 5px; line-height: 1.4; }
+        .sound-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+        .sound-grid .subject-btn { padding: 10px 4px; font-size: 0.82rem; }
+        input[type=range].vol { width: 100%; margin-top: 14px; accent-color: #ffd86b; }
+        /* ===== v3 home + bottom bar ===== */
+        .home-top { display: flex; justify-content: flex-end; }
+        .cd-row { display: flex; gap: 10px; margin-top: 16px; }
+        .cd-box { flex: 1; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.24); border-radius: 14px; padding: 10px 8px; text-align: center; }
+        .cd-num { display: block; font-size: 1.45rem; font-weight: bold; color: var(--accent); line-height: 1.2; }
+        .cd-lbl { font-size: 0.74rem; opacity: 0.9; }
+        .cd-date { font-size: 0.68rem; opacity: 0.7; margin-top: 2px; }
+        .cd-note { font-size: 0.68rem; opacity: 0.65; margin-top: 6px; text-align: center; line-height: 1.4; }
+        .hsec { font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75; margin: 18px 2px 8px; font-weight: bold; }
+        .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .hc { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.24); border-radius: 16px; padding: 13px; color: white; text-align: left; cursor: pointer; min-height: 84px; transition: 0.2s; }
+        .hc:active { transform: scale(0.98); background: rgba(255,255,255,0.24); }
+        .hc .hi { font-size: 1.45rem; }
+        .hc .ht { font-size: 0.9rem; font-weight: bold; margin-top: 6px; line-height: 1.2; }
+        .hc .hs { font-size: 0.72rem; opacity: 0.75; margin-top: 2px; }
+        .hc.wide { grid-column: span 2; min-height: 0; display: flex; align-items: center; gap: 12px; }
+        .hc.wide .ht { margin-top: 0; }
+        .bottom-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,0.18); display: flex; justify-content: space-around; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); }
+        .nav-item { flex: 1; background: none; border: none; color: white; opacity: 0.65; text-align: center; font-size: 0.68rem; padding: 4px 0; cursor: pointer; }
+        .nav-item .ni { display: block; font-size: 1.3rem; line-height: 1.2; }
+        .nav-item.on { opacity: 1; color: var(--accent); font-weight: bold; }
         .small-hint { font-size: 0.78rem; opacity: 0.65; line-height: 1.5; margin-top: 8px; }
     </style>
 </head>
@@ -244,23 +279,31 @@
 
 <div id="home" class="page active">
     <div class="container">
-        <div style="text-align:right;"><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 Dark mode</button></div>
-        <h1 style="margin-top:10px;">📚 Score Smart</h1>
-        <p class="tagline">Master Karnataka 2nd PUC English with Notes, MCQs, Grammar, Model Papers & Progress Tracking.</p>
-        <p class="tagline">🎯 Score 90+ Easily!</p>
+        <div class="home-top"><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 Dark mode</button></div>
+        <h1 style="margin-top:6px;">📚 Score Smart</h1>
+        <p class="tagline">Karnataka 2nd PUC English: Notes, MCQs, Grammar, Model Papers &amp; Progress Tracking</p>
         <div id="examCountdown"></div>
         <input class="search-bar home-search" type="search" id="homeSearch" placeholder="🔍 Search notes, questions, grammar..." oninput="homeSearchInput(this.value)" autocomplete="off">
         <div id="searchResults"></div>
-        <div class="menu" id="homeMenu">
-            <button class="btn" onclick="showPage('chapterList')">📖 Chapter Notes</button>
-            <button class="btn" onclick="showPage('mcqList')">❓ MCQ Practice</button>
-            <button class="btn" onclick="showPage('grammar')">✏️ Grammar Practice</button>
-            <button class="btn" onclick="showPage('modelPapers')">📝 Model Papers</button>
-            <button class="btn" onclick="showPage('prevPapers')">📄 Previous Year Papers</button>
-            <button class="btn" onclick="showPage('blueprint')">🗂️ Blueprint & Exam Pattern</button>
-            <button class="btn" onclick="showPage('progressTracker')">📊 Progress Tracker</button>
-            <button class="btn" onclick="showPage('savedPage')">🔖 My Saved</button>
-            <button class="btn" onclick="showPage('oneDayRevision')">🌙 1 Day Before Exam Revision</button>
+        <div id="homeMenu">
+            <div class="hsec">📚 Study</div>
+            <div class="hgrid">
+                <button class="hc" onclick="showPage('chapterList')"><div class="hi">📖</div><div class="ht">Chapter Notes</div><div class="hs">14 lessons</div></button>
+                <button class="hc" onclick="showPage('grammar')"><div class="hi">✏️</div><div class="ht">Grammar Practice</div><div class="hs">Workbook topics</div></button>
+                <button class="hc wide" onclick="showPage('oneDayRevision')"><div class="hi">🌙</div><div><div class="ht">1 Day Before Exam</div><div class="hs">Last-minute revision</div></div></button>
+            </div>
+            <div class="hsec">✍️ Practice</div>
+            <div class="hgrid">
+                <button class="hc" onclick="showPage('mcqList')"><div class="hi">❓</div><div class="ht">MCQ Practice</div><div class="hs">Scores are saved</div></button>
+                <button class="hc" onclick="showPage('modelPapers')"><div class="hi">📝</div><div class="ht">Model Papers</div><div class="hs">5 papers • 2026-27</div></button>
+                <button class="hc wide" onclick="showPage('prevPapers')"><div class="hi">📄</div><div><div class="ht">Previous Year Papers</div><div class="hs">Practise with real papers</div></div></button>
+            </div>
+            <div class="hsec">📊 Plan &amp; Track</div>
+            <div class="hgrid">
+                <button class="hc" onclick="showPage('blueprint')"><div class="hi">🗂️</div><div class="ht">Blueprint &amp; Pattern</div><div class="hs">Marks for every lesson</div></button>
+                <button class="hc" onclick="showPage('progressTracker')"><div class="hi">📊</div><div class="ht">Progress Tracker</div><div class="hs">Timer • Badges • Sounds</div></button>
+                <button class="hc wide" onclick="showPage('savedPage')"><div class="hi">🔖</div><div><div class="ht">My Saved</div><div class="hs">Questions you starred</div></div></button>
+            </div>
         </div>
     </div>
 </div>
@@ -823,7 +866,7 @@
         <h2>Model Paper 1</h2>
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">2026-27 Model Question Paper</p>
         <div class="note-item" style="text-align:center;">
-            <a href="https://drive.google.com/file/d/12qYla0cBB4Sn0x34Igps9nV5f4O_LzN1/view" target="_blank" rel="noopener" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 1</a>
+            <a href="https://drive.google.com/file/d/12qYla0cBB4Sn0x34Igps9nV5f4O_LzN1/view" target="_blank" rel="noopener" style="display:block;background:white;color:var(--brand-dark);padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 1</a>
             <a href="https://drive.google.com/uc?export=download&id=12qYla0cBB4Sn0x34Igps9nV5f4O_LzN1" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">⬇️ Download Model Paper 1</a>
         </div>
     </div>
@@ -834,7 +877,7 @@
         <h2>Model Paper 2</h2>
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">2026-27 Model Question Paper</p>
         <div class="note-item" style="text-align:center;">
-            <a href="https://drive.google.com/file/d/19OnwNW9Ul2X__o4HvTdrV4MUn1TpAxuZ/view" target="_blank" rel="noopener" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 2</a>
+            <a href="https://drive.google.com/file/d/19OnwNW9Ul2X__o4HvTdrV4MUn1TpAxuZ/view" target="_blank" rel="noopener" style="display:block;background:white;color:var(--brand-dark);padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 2</a>
             <a href="https://drive.google.com/uc?export=download&id=19OnwNW9Ul2X__o4HvTdrV4MUn1TpAxuZ" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">⬇️ Download Model Paper 2</a>
         </div>
     </div>
@@ -845,7 +888,7 @@
         <h2>Model Paper 3</h2>
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">2026-27 Model Question Paper</p>
         <div class="note-item" style="text-align:center;">
-            <a href="https://drive.google.com/file/d/1wEEpGIED6ag0PpT-UzTnpHdgJLHtlgZe/view" target="_blank" rel="noopener" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 3</a>
+            <a href="https://drive.google.com/file/d/1wEEpGIED6ag0PpT-UzTnpHdgJLHtlgZe/view" target="_blank" rel="noopener" style="display:block;background:white;color:var(--brand-dark);padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 3</a>
             <a href="https://drive.google.com/uc?export=download&id=1wEEpGIED6ag0PpT-UzTnpHdgJLHtlgZe" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">⬇️ Download Model Paper 3</a>
         </div>
     </div>
@@ -856,7 +899,7 @@
         <h2>Model Paper 4</h2>
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">2026-27 Model Question Paper</p>
         <div class="note-item" style="text-align:center;">
-            <a href="https://drive.google.com/file/d/1Txczr3hD3G7Kd_aATBwym_ikwrSKYC5P/view" target="_blank" rel="noopener" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 4</a>
+            <a href="https://drive.google.com/file/d/1Txczr3hD3G7Kd_aATBwym_ikwrSKYC5P/view" target="_blank" rel="noopener" style="display:block;background:white;color:var(--brand-dark);padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 4</a>
             <a href="https://drive.google.com/uc?export=download&id=1Txczr3hD3G7Kd_aATBwym_ikwrSKYC5P" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">⬇️ Download Model Paper 4</a>
         </div>
     </div>
@@ -867,7 +910,7 @@
         <h2>Model Paper 5</h2>
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">2026-27 Model Question Paper</p>
         <div class="note-item" style="text-align:center;">
-            <a href="https://drive.google.com/file/d/1j2h9u4vdRTM86n-ci5XN9-R89BmTnO1I/view" target="_blank" rel="noopener" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 5</a>
+            <a href="https://drive.google.com/file/d/1j2h9u4vdRTM86n-ci5XN9-R89BmTnO1I/view" target="_blank" rel="noopener" style="display:block;background:white;color:var(--brand-dark);padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;margin-bottom:10px;">👁️ View Model Paper 5</a>
             <a href="https://drive.google.com/uc?export=download&id=1j2h9u4vdRTM86n-ci5XN9-R89BmTnO1I" target="_blank" rel="noopener" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">⬇️ Download Model Paper 5</a>
         </div>
     </div>
@@ -881,17 +924,17 @@
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">Karnataka 2nd PUC English</p>
         <div class="note-item" style="text-align:center;margin-bottom:15px;">
             <div style="font-weight:bold;font-size:1rem;margin-bottom:12px;">📋 Annual Question Paper — March 2023</div>
-            <a href="https://drive.google.com/file/d/1gnhqnNJ6CzjmvQoi7Obm_pUWq5694qTN/view" target="_blank" style="display:block;background:white;color:#764ba2;padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;margin-bottom:8px;">👁️ View Paper 2023</a>
+            <a href="https://drive.google.com/file/d/1gnhqnNJ6CzjmvQoi7Obm_pUWq5694qTN/view" target="_blank" style="display:block;background:white;color:var(--brand-dark);padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;margin-bottom:8px;">👁️ View Paper 2023</a>
             <a href="https://drive.google.com/uc?export=download&id=1gnhqnNJ6CzjmvQoi7Obm_pUWq5694qTN" target="_blank" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;">⬇️ Download Paper 2023</a>
         </div>
         <div class="note-item" style="text-align:center;margin-bottom:15px;">
             <div style="font-weight:bold;font-size:1rem;margin-bottom:12px;">📋 Annual Question Paper — March 2024</div>
-            <a href="https://drive.google.com/file/d/1L623XJojFnjvZJPnz0bHQN9LN_3j6uqN/view" target="_blank" style="display:block;background:white;color:#764ba2;padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;margin-bottom:8px;">👁️ View Paper 2024</a>
+            <a href="https://drive.google.com/file/d/1L623XJojFnjvZJPnz0bHQN9LN_3j6uqN/view" target="_blank" style="display:block;background:white;color:var(--brand-dark);padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;margin-bottom:8px;">👁️ View Paper 2024</a>
             <a href="https://drive.google.com/uc?export=download&id=1L623XJojFnjvZJPnz0bHQN9LN_3j6uqN" target="_blank" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;">⬇️ Download Paper 2024</a>
         </div>
         <div class="note-item" style="text-align:center;margin-bottom:15px;">
             <div style="font-weight:bold;font-size:1rem;margin-bottom:12px;">📋 Annual Question Paper — March 2025</div>
-            <a href="https://drive.google.com/file/d/13eY_i74HKU5gNp7GMqqSWMx4Begc1lTb/view" target="_blank" style="display:block;background:white;color:#764ba2;padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;margin-bottom:8px;">👁️ View Paper 2025</a>
+            <a href="https://drive.google.com/file/d/13eY_i74HKU5gNp7GMqqSWMx4Begc1lTb/view" target="_blank" style="display:block;background:white;color:var(--brand-dark);padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;margin-bottom:8px;">👁️ View Paper 2025</a>
             <a href="https://drive.google.com/uc?export=download&id=13eY_i74HKU5gNp7GMqqSWMx4Begc1lTb" target="_blank" style="display:block;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);color:white;padding:12px;border-radius:10px;font-weight:bold;font-size:0.95rem;text-decoration:none;">⬇️ Download Paper 2025</a>
         </div>
         <p style="text-align:center;opacity:0.7;font-size:0.78rem;margin-top:22px;line-height:1.5;">Source: official website of the Pre-University Education Department, Karnataka (<a href="https://pue.karnataka.gov.in" target="_blank" rel="noopener" style="color:#90caf9;">pue.karnataka.gov.in</a>). Score Smart is an independent study app and is not affiliated with or endorsed by the Government of Karnataka or the Department.</p>
@@ -3289,7 +3332,7 @@
         <p style="text-align:center;opacity:0.8;margin-bottom:20px;font-size:0.9rem;">Karnataka 2nd PUC English 2026-27</p>
         <div class="note-item" style="text-align:center;">
             <p style="margin-bottom:16px;opacity:0.9;">Below is the blueprint in the app. You can also open the official file:</p>
-            <a href="https://drive.google.com/file/d/11qMRHrva_JJDdK9v_afiql7pCDERfin8/view" target="_blank" style="display:block;background:white;color:#764ba2;padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">📊 Open Blueprint & Exam Pattern</a>
+            <a href="https://drive.google.com/file/d/11qMRHrva_JJDdK9v_afiql7pCDERfin8/view" target="_blank" style="display:block;background:white;color:var(--brand-dark);padding:14px;border-radius:12px;font-weight:bold;font-size:1rem;text-decoration:none;">📊 Open Blueprint & Exam Pattern</a>
         </div>
         <div class="note-item" style="margin-top:20px;">
             <div class="note-q">📚 Course Book (SPRINGS) — marks for each lesson</div>
@@ -3403,6 +3446,20 @@
             </div>
         </div>
 
+        <!-- FOCUS SOUNDS -->
+        <div class="tracker-card">
+            <h3>🎧 Focus Sounds</h3>
+            <div class="sound-grid" id="soundBtns">
+                <button class="subject-btn selected" data-sound="off" onclick="setSound('off')">🔇 Off</button>
+                <button class="subject-btn" data-sound="rain" onclick="setSound('rain')">🌧️ Rain</button>
+                <button class="subject-btn" data-sound="white" onclick="setSound('white')">⚪ White noise</button>
+                <button class="subject-btn" data-sound="brown" onclick="setSound('brown')">🟤 Deep noise</button>
+                <button class="subject-btn" data-sound="wind" onclick="setSound('wind')">🍃 Wind</button>
+            </div>
+            <input class="vol" type="range" id="soundVol" min="0" max="100" value="50" oninput="setSoundVolume(this.value)" aria-label="Volume">
+            <p class="small-hint">Calm background sounds made inside the app, so no download is needed. Keep the volume low, and tap Off when you finish. The sound stops when you leave the app.</p>
+        </div>
+
         <!-- SUMMARY: DAY / WEEK / MONTH -->
         <div class="tracker-card">
             <div class="p-tabs">
@@ -3484,6 +3541,14 @@
         <button class="popup-close" onclick="closePopup()">🎯 Keep Going!</button>
     </div>
 </div>
+
+<nav class="bottom-nav" id="bottomNav">
+    <button class="nav-item on" data-nav="home" onclick="showPage('home')"><span class="ni">🏠</span>Home</button>
+    <button class="nav-item" data-nav="notes" onclick="showPage('chapterList')"><span class="ni">📖</span>Notes</button>
+    <button class="nav-item" data-nav="mcq" onclick="showPage('mcqList')"><span class="ni">❓</span>MCQ</button>
+    <button class="nav-item" data-nav="tracker" onclick="showPage('progressTracker')"><span class="ni">📊</span>Tracker</button>
+    <button class="nav-item" data-nav="saved" onclick="showPage('savedPage')"><span class="ni">🔖</span>Saved</button>
+</nav>
 
 <div class="toast" id="toast"></div>
 
@@ -3988,6 +4053,16 @@ function showPage(id) {
     if (id === 'progressTracker') { renderTracker(); updateGoalBar(); }
     if (id === 'savedPage') renderSaved();
     if (id === 'home') updateCountdown();
+    updateNav(id);
+}
+function updateNav(id) {
+    let tab = '';
+    if (id === 'home') tab = 'home';
+    else if (id === 'chapterList' || /^chapter\d+$/.test(id)) tab = 'notes';
+    else if (id === 'mcqList' || /^mcq\d+$/.test(id)) tab = 'mcq';
+    else if (id === 'progressTracker') tab = 'tracker';
+    else if (id === 'savedPage') tab = 'saved';
+    document.querySelectorAll('#bottomNav .nav-item').forEach(b => b.classList.toggle('on', b.dataset.nav === tab));
 }
 
 function showPDF(id) {
@@ -4198,7 +4273,7 @@ function updateGoalBar() {
         if (pct < 30) fill.style.background = 'linear-gradient(90deg, #ff6b6b, #ff8e53)';
         else if (pct < 60) fill.style.background = 'linear-gradient(90deg, #f7971e, #ffd200)';
         else if (pct < 100) fill.style.background = 'linear-gradient(90deg, #56c596, #00e0a0)';
-        else fill.style.background = 'linear-gradient(90deg, #667eea, #764ba2)';
+        else fill.style.background = 'linear-gradient(90deg, var(--brand), var(--brand-dark))';
         document.getElementById('goalText').textContent = formatHM(todayMins) + ' / ' + formatHM(dailyGoalMinutes);
         document.getElementById('goalPctText').textContent = pct + '% completed today';
     } else {
@@ -4532,7 +4607,7 @@ function applyTheme(dark) {
     const b = document.getElementById('themeBtn');
     if (b) b.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
     const m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', dark ? '#1a1230' : '#667eea');
+    if (m) m.setAttribute('content', dark ? '#070d1c' : '#0b4f9c');
 }
 function toggleTheme() {
     const dark = !document.body.classList.contains('dark');
@@ -4549,18 +4624,18 @@ function updateCountdown() {
     const box = document.getElementById('examCountdown');
     if (!box) return;
     const today = startOfDay(new Date());
-    let html = '<div class="exam-card">';
+    let html = '<div class="cd-row">';
     EXAMS.forEach(ex => {
         const days = Math.round((ex.date - today) / 86400000);
-        let txt;
-        if (days > 1) txt = days + ' days left';
-        else if (days === 1) txt = 'Tomorrow!';
-        else if (days === 0) txt = 'Today! All the best 🌟';
-        else txt = 'Completed ✅';
-        html += '<div class="exam-row"><span>📅 English ' + ex.name + '<br><span style="font-size:0.75rem;opacity:0.75;">' +
-            ex.date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) + ' • 10:00 AM</span></span><span class="exam-days">' + txt + '</span></div>';
+        let num, lbl;
+        if (days > 1) { num = String(days); lbl = 'days to English ' + ex.name; }
+        else if (days === 1) { num = 'Tomorrow'; lbl = 'English ' + ex.name; }
+        else if (days === 0) { num = 'Today!'; lbl = 'English ' + ex.name + ' • All the best 🌟'; }
+        else { num = '✅'; lbl = 'English ' + ex.name + ' completed'; }
+        html += '<div class="cd-box"><span class="cd-num">' + num + '</span><div class="cd-lbl">' + lbl + '</div><div class="cd-date">' +
+            ex.date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) + ' • 10 AM</div></div>';
     });
-    html += '<div class="exam-note">Dates are from the board\'s tentative timetable and may change. Always check official notices.</div></div>';
+    html += '</div><div class="cd-note">Tentative dates from the board timetable. They may change, so check official notices.</div>';
     box.innerHTML = html;
 }
 
@@ -4796,14 +4871,103 @@ function setupMarksTags() {
     });
 }
 
+
+// ----- focus sounds (generated in the app with Web Audio: no audio files, no copyright issues) -----
+let audioCtx = null;
+let soundNodes = [];
+let currentSound = 'off';
+let soundVol = 0.5;
+const SOUND_GAIN = { white: 0.45, brown: 1.3, rain: 0.9, wind: 1.6 };
+let masterGain = null;
+
+function makeNoiseBuffer(ctx, brown) {
+    const len = ctx.sampleRate * 6;
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < len; i++) {
+        const w = Math.random() * 2 - 1;
+        if (brown) { last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; } else { d[i] = w; }
+    }
+    const fade = Math.floor(ctx.sampleRate * 0.08);   // soft edges so the loop does not click
+    for (let i = 0; i < fade; i++) { const g = i / fade; d[i] *= g; d[len - 1 - i] *= g; }
+    return buf;
+}
+function stopSoundNodes() {
+    soundNodes.forEach(n => { try { if (n.stop) n.stop(); } catch (e) {} try { n.disconnect(); } catch (e) {} });
+    soundNodes = [];
+    masterGain = null;
+}
+function renderSoundButtons() {
+    document.querySelectorAll('#soundBtns .subject-btn').forEach(b => b.classList.toggle('selected', b.dataset.sound === currentSound));
+}
+function setSound(type) {
+    stopSoundNodes();
+    currentSound = 'off';
+    if (type !== 'off') {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) { toast('Sound is not supported on this phone'); renderSoundButtons(); return; }
+        try {
+            if (!audioCtx) audioCtx = new AC();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const ctx = audioCtx;
+            masterGain = ctx.createGain();
+            masterGain.gain.value = soundVol * SOUND_GAIN[type];
+            masterGain.connect(ctx.destination);
+            const src = ctx.createBufferSource();
+            src.buffer = makeNoiseBuffer(ctx, type === 'brown' || type === 'wind');
+            src.loop = true;
+            soundNodes.push(masterGain, src);
+            if (type === 'white' || type === 'brown') {
+                src.connect(masterGain);
+            } else if (type === 'rain') {
+                const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 900;
+                const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 9000;
+                src.connect(hp); hp.connect(lp); lp.connect(masterGain);
+                soundNodes.push(hp, lp);
+            } else if (type === 'wind') {
+                const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 450; bp.Q.value = 0.7;
+                const swell = ctx.createGain(); swell.gain.value = 0.6;
+                const lfo = ctx.createOscillator(); lfo.frequency.value = 0.12;
+                const lfoDepth = ctx.createGain(); lfoDepth.gain.value = 0.4;
+                lfo.connect(lfoDepth); lfoDepth.connect(swell.gain);
+                src.connect(bp); bp.connect(swell); swell.connect(masterGain);
+                lfo.start();
+                soundNodes.push(bp, swell, lfo, lfoDepth);
+            }
+            src.start();
+            currentSound = type;
+        } catch (e) {
+            stopSoundNodes();
+            toast('Could not start the sound on this phone');
+        }
+    }
+    renderSoundButtons();
+}
+function setSoundVolume(v) {
+    soundVol = Math.max(0, Math.min(1, parseInt(v, 10) / 100));
+    lsSet('ss_sound_vol', Math.round(soundVol * 100));
+    if (masterGain && SOUND_GAIN[currentSound]) masterGain.gain.value = soundVol * SOUND_GAIN[currentSound];
+}
+function initSound() {
+    const v = parseInt(lsGet('ss_sound_vol', 50), 10);
+    soundVol = (isNaN(v) ? 50 : Math.max(0, Math.min(100, v))) / 100;
+    const r = document.getElementById('soundVol');
+    if (r) r.value = Math.round(soundVol * 100);
+    renderSoundButtons();
+}
+document.addEventListener('visibilitychange', () => { if (document.hidden && currentSound !== 'off') setSound('off'); });
+
 // ===== START UP =====
 (function initAll() {
     try { applyTheme(localStorage.getItem('ss_theme') === 'dark'); } catch (e) { applyTheme(false); }
     setupMarksTags();
+    initSound();
     buildBookmarks();
     initTracker();
     updateCountdown();
     updateScoreBadges();
+    updateNav('home');
 })();
 
 
