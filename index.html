@@ -271,11 +271,137 @@
         .nav-item { flex: 1; background: none; border: none; color: white; opacity: 0.65; text-align: center; font-size: 0.68rem; padding: 4px 0; cursor: pointer; }
         .nav-item .ni { display: block; font-size: 1.3rem; line-height: 1.2; }
         .nav-item.on { opacity: 1; color: var(--accent); font-weight: bold; }
+        /* ===== opening screen ===== */
+        #splash { position: fixed; inset: 0; z-index: 3000; display: flex; flex-direction: column; align-items: center; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 20px 24px calc(22px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, #ffffff 0%, #eaf3ff 55%, #d6e8ff 100%); color: #0b2a55; text-align: center; transition: opacity .35s ease, transform .35s ease; }
+        body.dark #splash { background: linear-gradient(180deg, #0e1730, #070d1c); color: #eaf1ff; }
+        #splash.hide { opacity: 0; transform: scale(1.03); pointer-events: none; }
+        #splash .sp-in { width: 100%; max-width: 420px; margin: auto 0; display: flex; flex-direction: column; align-items: center; }
+        #splash .sp-logo { height: 52px; max-width: 60%; object-fit: contain; animation: spFade .6s ease both; }
+        #splash .sp-stage { position: relative; margin-top: 14px; width: 250px; height: 290px; display: flex; align-items: flex-end; justify-content: center; }
+        #splash .sp-stage::before { content: ''; position: absolute; left: 50%; top: 52%; width: 250px; height: 250px; margin: -125px 0 0 -125px; border-radius: 50%; background: radial-gradient(circle, #ffffff 0%, #cfe4ff 62%, rgba(207,228,255,0) 72%); transform: scale(0); animation: spGlow .8s ease .2s forwards; }
+        body.dark #splash .sp-stage::before { background: radial-gradient(circle, #1d3a78 0%, #12295a 62%, rgba(18,41,90,0) 72%); }
+        #splash .sp-doll { position: relative; height: 270px; max-width: 100%; object-fit: contain; transform: scale(0); animation: spPop .9s cubic-bezier(.28,1.6,.5,1) .45s forwards, spIdle 2.8s ease-in-out 1.5s infinite; transform-origin: 50% 100%; filter: drop-shadow(0 10px 12px rgba(11,79,156,.25)); }
+        #splash h1 { font-size: 2.1rem; margin-top: 8px; color: #0b4f9c; animation: spUp .6s ease 1.1s both; }
+        body.dark #splash h1 { color: #fff; }
+        #splash .sp-sub { font-size: 1rem; font-weight: bold; margin-top: 2px; opacity: .8; animation: spUp .6s ease 1.2s both; }
+        #splash .sp-cdline { margin-top: 16px; padding: 10px 18px; border-radius: 999px; background: #fff; border: 1px solid #bcd6f7; font-size: 0.92rem; font-weight: bold; color: #0b4f9c; animation: spUp .6s ease 1.4s both; }
+        body.dark #splash .sp-cdline { background: #12295a; border-color: #28477f; color: #ffd84d; }
+        #splash .sp-go { width: 100%; margin-top: 22px; padding: 15px; border: none; border-radius: 14px; background: #0b4f9c; color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 6px 16px rgba(11,79,156,.3); animation: spUp .6s ease 1.6s both; }
+        #splash .sp-go:active { transform: scale(.98); }
+        #splash .sp-skip { background: none; border: none; color: inherit; opacity: .7; font-size: 0.9rem; margin-top: 8px; padding: 8px 18px; cursor: pointer; text-decoration: underline; animation: spFade .6s ease 1.8s both; }
+        @keyframes spFade { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes spGlow { from { transform: scale(0); } to { transform: scale(1); } }
+        @keyframes spUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        @keyframes spPop { 0% { transform: translateY(40px) scale(0); } 55% { transform: translateY(-18px) scale(1.1); } 75% { transform: translateY(4px) scale(.97); } 100% { transform: none; } }
+        @keyframes spIdle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @media (max-height: 640px) { #splash .sp-stage { width: 190px; height: 215px; } #splash .sp-stage::before { width: 190px; height: 190px; margin: -95px 0 0 -95px; } #splash .sp-doll { height: 200px; } #splash h1 { font-size: 1.8rem; } }
+        #splash .sp-top { width: 100%; max-width: 420px; display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+        #splash .sp-top .sp-logo { height: 40px; max-width: 55%; object-position: left center; }
+        #splash .sp-skip { margin: 0; padding: 8px 4px; animation: none; opacity: .75; }
+        #splash .sp-track { width: 100%; max-width: 420px; flex: 1; overflow: hidden; display: flex; align-items: center; touch-action: pan-y; }
+        #splash .sp-slides { display: flex; width: 100%; transition: transform .38s ease; }
+        #splash .sp-slide { flex: 0 0 100%; padding: 0 6px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        #splash .sp-chip { font-size: .74rem; font-weight: bold; letter-spacing: .05em; padding: 4px 12px; border-radius: 999px; background: #fff; border: 1px solid #bcd6f7; color: #0b4f9c; }
+        body.dark #splash .sp-chip { background: #12295a; border-color: #28477f; color: #ffd84d; }
+        #splash .sp-art { position: relative; width: 190px; height: 190px; margin: 14px 0 6px; display: flex; align-items: center; justify-content: center; }
+        #splash .sp-art::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, #ffffff 0%, #cfe4ff 62%, rgba(207,228,255,0) 72%); }
+        body.dark #splash .sp-art::before { background: radial-gradient(circle, #1d3a78 0%, #12295a 62%, rgba(18,41,90,0) 72%); }
+        #splash .sp-art:has(.sp-doll) { width: 280px; height: 310px; } #splash .sp-art:has(.sp-doll)::before { inset: 15px 0 0 0; }
+        #splash .sp-emoji { position: relative; font-size: 5.2rem; line-height: 1; filter: drop-shadow(0 6px 8px rgba(11,79,156,.25)); }
+        #splash .sp-slide.on .sp-emoji { animation: spBounce .8s cubic-bezier(.28,1.6,.5,1) both; }
+        #splash .sp-slide.on .sp-t, #splash .sp-slide.on .sp-d, #splash .sp-slide.on .sp-pts { animation: spUp .5s ease .15s both; }
+        #splash .sp-slide.on .sp-d { animation-delay: .25s; }
+        #splash .sp-slide.on .sp-pts { animation-delay: .35s; }
+        #splash .sp-t { font-size: 1.55rem; color: #0b4f9c; margin: 8px 0 4px; }
+        body.dark #splash .sp-t { color: #fff; }
+        #splash .sp-d { font-size: 1rem; opacity: .85; line-height: 1.45; max-width: 320px; }
+        #splash .sp-pts { list-style: none; margin: 12px 0 0; padding: 0; text-align: left; font-size: .92rem; }
+        #splash .sp-pts li { padding: 3px 0 3px 22px; position: relative; }
+        #splash .sp-pts li::before { content: '✔'; position: absolute; left: 0; color: #0b8f4d; font-weight: bold; }
+        #splash .sp-slide .sp-doll { animation: none; transform: none; height: 300px; }
+        #splash .sp-slide.on .sp-doll { transform: scale(0); animation: spPop .9s cubic-bezier(.28,1.6,.5,1) .15s forwards, spIdle 2.8s ease-in-out 1.2s infinite; }
+        #splash .sp-dots { display: flex; gap: 6px; margin: 10px 0 14px; }
+        #splash .sp-dot { width: 8px; height: 8px; border-radius: 99px; background: #9fc0ea; border: none; padding: 0; transition: width .25s, background .25s; }
+        #splash .sp-dot.on { width: 22px; background: #0b4f9c; }
+        body.dark #splash .sp-dot { background: #3a5a94; } body.dark #splash .sp-dot.on { background: #ffd84d; }
+        #splash .sp-btns { width: 100%; max-width: 420px; display: flex; gap: 10px; }
+        #splash .sp-back { flex: 0 0 auto; padding: 15px 20px; border-radius: 14px; border: 2px solid #0b4f9c; background: transparent; color: #0b4f9c; font-size: 1.05rem; font-weight: bold; cursor: pointer; }
+        body.dark #splash .sp-back { color: #fff; border-color: #3a5a94; }
+        #splash .sp-btns .sp-go { margin-top: 0; flex: 1; animation: none; }
+        #splash .sp-rows { width: 100%; margin-top: 14px; display: flex; flex-direction: column; gap: 9px; }
+        #splash .sp-row { display: flex; align-items: center; gap: 12px; text-align: left; background: #fff; border: 1px solid #cfe0f6; border-radius: 16px; padding: 11px 14px; box-shadow: 0 3px 10px rgba(11,79,156,.08); opacity: 0; }
+        body.dark #splash .sp-row { background: #12295a; border-color: #28477f; box-shadow: none; }
+        #splash .sp-slide.on .sp-row { animation: spUp .5s ease both; } #splash .sp-slide.on .sp-row:nth-child(1) { animation-delay: .25s; } #splash .sp-slide.on .sp-row:nth-child(2) { animation-delay: .4s; } #splash .sp-slide.on .sp-row:nth-child(3) { animation-delay: .55s; }
+        #splash .sp-re { font-size: 1.8rem; width: 44px; height: 44px; border-radius: 12px; background: #e3efff; display: flex; align-items: center; justify-content: center; flex: none; }
+        body.dark #splash .sp-re { background: #1d3a78; }
+        #splash .sp-row b { display: block; font-size: 1rem; color: #0b4f9c; } body.dark #splash .sp-row b { color: #fff; }
+        #splash .sp-row span:not(.sp-re) { display: block; font-size: .82rem; opacity: .78; margin-top: 1px; }
+        @keyframes spBounce { 0% { transform: scale(0) translateY(30px); } 60% { transform: scale(1.15) translateY(-10px); } 100% { transform: none; } }
+        @media (max-height: 640px) { #splash .sp-art { width: 140px; height: 140px; margin: 6px 0 2px; } #splash .sp-emoji { font-size: 3.8rem; } #splash .sp-slide .sp-doll { height: 190px; } #splash .sp-art:has(.sp-doll) { width: 190px; height: 200px; } #splash .sp-t { font-size: 1.3rem; } #splash .sp-row { padding: 8px 12px; } #splash .sp-re { width: 38px; height: 38px; font-size: 1.5rem; } #splash .sp-d { font-size: .92rem; } }
+        @media (prefers-reduced-motion: reduce) { #splash *, #splash { animation-duration: .01ms !important; animation-delay: 0s !important; transition: none !important; } #splash .sp-doll, #splash .sp-stage::before { transform: none; } #splash .sp-slides { transition: none; } #splash .sp-row { opacity: 1; } }
         .small-hint { font-size: 0.78rem; opacity: 0.65; line-height: 1.5; margin-top: 8px; }
     </style>
 </head>
 <body>
 <script>try{if(localStorage.getItem('ss_theme')==='dark')document.body.classList.add('dark');}catch(e){}</script>
+<div id="splash" role="dialog" aria-label="Welcome to Score Smart">
+    <div class="sp-top"><img class="sp-logo" id="spLogo" src="logo.png" alt="Score Smart logo"><button class="sp-skip" id="spSkip" onclick="closeSplash()">Skip</button></div>
+    <div class="sp-track" id="spTrack"><div class="sp-slides" id="spSlides">
+<div class="sp-slide"><div class="sp-chip">👋 Welcome</div><div class="sp-art"><img class="sp-doll" id="spDoll" src="doll.png" alt=""></div><h2 class="sp-t">Hi! I'm your study buddy</h2><div class="sp-d">Welcome to <b>Score Smart</b>, a free study app for Karnataka 2nd PUC English. Let me show you around!</div></div><div class="sp-slide"><div class="sp-chip">📚 Step 1 · Study</div><h2 class="sp-t">Learn the lessons</h2><div class="sp-d">Everything you need to read and revise.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">📖</span><div><b>Chapter Notes</b><span>All 14 lessons, with search</span></div></div><div class="sp-row"><span class="sp-re">✏️</span><div><b>Grammar Practice</b><span>Workbook topics with practice</span></div></div><div class="sp-row"><span class="sp-re">🌙</span><div><b>1 Day Before Exam</b><span>A calm last-minute revision page</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">✍️ Step 2 · Practice</div><h2 class="sp-t">Test yourself</h2><div class="sp-d">Practise the way the exam asks.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">❓</span><div><b>MCQ Practice</b><span>Scores saved, review wrong answers</span></div></div><div class="sp-row"><span class="sp-re">📝</span><div><b>Model Papers</b><span>Full papers to practise</span></div></div><div class="sp-row"><span class="sp-re">📄</span><div><b>Previous Year Papers</b><span>Real question papers</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">📊 Step 3 · Plan &amp; Track</div><h2 class="sp-t">Stay on track</h2><div class="sp-d">Know what to study and keep going.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">🗂️</span><div><b>Blueprint &amp; Pattern</b><span>Marks for every lesson</span></div></div><div class="sp-row"><span class="sp-re">📊</span><div><b>Progress Tracker</b><span>Timer, daily goal, badges, focus sounds</span></div></div><div class="sp-row"><span class="sp-re">🔖</span><div><b>My Saved</b><span>Star questions to find them again</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">🚀 Ready</div><div class="sp-art"><img class="sp-doll" id="spDoll2" src="doll.png" alt=""></div><h2 class="sp-t">All the best!</h2><div class="sp-d">Study a little every day and you will do great.</div><div class="sp-cdline" id="spCountdown"></div></div>
+        </div></div>
+    <div class="sp-dots" id="spDots"></div>
+    <div class="sp-btns"><button class="sp-back" id="spBack" onclick="spGo(-1)" style="display:none">←</button><button class="sp-go" id="spGo" onclick="spNext()">Next →</button></div>
+</div>
+<script>
+(function () {
+    var el = document.getElementById('splash');
+    var seen = false;
+    try { seen = sessionStorage.getItem('ss_splash_seen') === '1'; } catch (e) {}
+    if (seen) { el.style.display = 'none'; return; }
+    document.documentElement.style.overflow = 'hidden';
+    // picture fallbacks: logo.png -> icon-192.png -> hide; doll.png -> hide
+    var lg = document.getElementById('spLogo');
+    lg.onerror = function () { lg.onerror = function () { lg.style.display = 'none'; }; lg.src = 'icon-192.png'; };
+    var dls = document.querySelectorAll('#splash .sp-doll');
+    for (var q = 0; q < dls.length; q++) dls[q].onerror = function () { this.style.display = 'none'; };
+    spInit();
+})();
+var spI, spN;
+function spInit() {
+    var sl = document.querySelectorAll('#splash .sp-slide'); spN = sl.length;
+    var d = document.getElementById('spDots'), h = '';
+    for (var i = 0; i < spN; i++) h += '<button class="sp-dot" aria-label="Slide ' + (i + 1) + '" onclick="spTo(' + i + ')"></button>';
+    d.innerHTML = h; spTo(0);
+    var tr = document.getElementById('spTrack'), x0 = null, y0 = 0;
+    tr.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    tr.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) spGo(dx < 0 ? 1 : -1);
+    }, { passive: true });
+}
+function spTo(i) {
+    if (i < 0 || i >= spN) return; spI = i;
+    document.getElementById('spSlides').style.transform = 'translateX(-' + (i * 100) + '%)';
+    var sl = document.querySelectorAll('#splash .sp-slide'), dt = document.querySelectorAll('#splash .sp-dot');
+    for (var k = 0; k < spN; k++) { sl[k].classList.toggle('on', k === i); dt[k].classList.toggle('on', k === i); }
+    var last = i === spN - 1;
+    document.getElementById('spGo').textContent = last ? 'Start studying →' : 'Next →';
+    document.getElementById('spBack').style.display = i > 0 ? '' : 'none';
+    document.getElementById('spSkip').style.visibility = last ? 'hidden' : 'visible';
+}
+function spGo(n) { spTo(spI + n); }
+function spNext() { if (spI >= spN - 1) closeSplash(); else spTo(spI + 1); }
+function closeSplash() {
+    var el = document.getElementById('splash');
+    if (!el || el.classList.contains('hide')) return;
+    try { sessionStorage.setItem('ss_splash_seen', '1'); } catch (e) {}
+    el.classList.add('hide');
+    document.documentElement.style.overflow = '';
+    setTimeout(function () { el.style.display = 'none'; }, 380);
+}
+</script>
+
 
 <div id="home" class="page active">
     <div class="container">
@@ -5044,6 +5170,20 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && cur
     updateScoreBadges();
     updateNav('home');
 })();
+
+function renderSplashCountdown() {
+    var box = document.getElementById('spCountdown');
+    if (!box || typeof EXAMS === 'undefined') return;
+    var today = startOfDay(new Date()), nxt = null, days = 0;
+    for (var i = 0; i < EXAMS.length; i++) {
+        var d = Math.round((EXAMS[i].date - today) / 86400000);
+        if (d >= 0) { nxt = EXAMS[i]; days = d; break; }
+    }
+    if (!nxt) { box.style.display = 'none'; return; }
+    box.textContent = days === 0 ? '⏳ English ' + nxt.name + ' is today. All the best! 🌟' : '⏳ ' + days + (days === 1 ? ' day' : ' days') + ' to English ' + nxt.name;
+}
+renderSplashCountdown();
+
 
 
 // ===== PWA SERVICE WORKER REGISTRATION =====
