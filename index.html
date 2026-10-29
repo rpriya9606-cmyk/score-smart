@@ -362,6 +362,31 @@
         body.dark .ssd-btn { color: #fff; border-color: #3a5a94; } body.dark .ssd-btn.primary { background: #1d6fd1; border-color: #1d6fd1; }
         .sess-right { display: flex; align-items: center; gap: 2px; }
         .sess-act { background: none; border: none; color: inherit; opacity: .75; font-size: 1rem; padding: 6px 7px; cursor: pointer; }
+        /* ===== sign-in ===== */
+        #splash .sp-signbox { width: 100%; margin-top: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        #splash .sp-gbtn { width: 100%; max-width: 330px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 14px; border: 2px solid #bcd6f7; background: #fff; color: #1f2d4a; font-size: 1.02rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(11,79,156,.12); }
+        #splash .sp-gbtn:disabled { opacity: .6; }
+        #splash .sp-gbtn svg { width: 22px; height: 22px; }
+        #splash .sp-link { background: none; border: none; color: #0b4f9c; font-size: .95rem; font-weight: bold; text-decoration: underline; padding: 6px 10px; cursor: pointer; }
+        body.dark #splash .sp-link { color: #ffd84d; }
+        #splash .sp-note2 { font-size: .78rem; opacity: .75; max-width: 300px; line-height: 1.4; } #splash .sp-note2 a { color: inherit; }
+        #splash .sp-msg { font-size: .85rem; color: #0b4f9c; min-height: 1.1em; } body.dark #splash .sp-msg { color: #ffd84d; }
+        #splash .sp-ok { font-size: 1.1rem; color: #0b8f4d; } body.dark #splash .sp-ok { color: #5be3a0; }
+        #splash .sp-slide.on .sp-doll.busy { animation: spBusy .5s ease-in-out infinite; }
+        #splash .sp-slide.on .sp-doll.joy { animation: spJoy .8s ease-in-out 2; }
+        #splash .sp-slide.on #spDoll { animation: spPop .9s cubic-bezier(.28,1.6,.5,1) .15s forwards, spWave 1.1s ease-in-out 1.15s 2, spIdle 2.8s ease-in-out 3.5s infinite; }
+        #splash .sp-conf { position: absolute; top: -12px; width: 9px; height: 14px; border-radius: 2px; pointer-events: none; animation: spConf 2s ease-in forwards; }
+        @keyframes spBusy { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+        @keyframes spJoy { 0%,100% { transform: translateY(0) rotate(0); } 40% { transform: translateY(-26px) rotate(-6deg); } 70% { transform: translateY(-10px) rotate(5deg); } }
+        @keyframes spWave { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-7deg); } 75% { transform: rotate(7deg); } }
+        @keyframes spConf { 0% { transform: translate(0,0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx),105vh) rotate(var(--rot)); opacity: .9; } }
+        @media (max-height: 640px) { #splash #spSignSlide .sp-art:has(.sp-doll) { width: 130px; height: 140px; margin: 2px 0; } #splash #spSignSlide .sp-doll { height: 132px; } #splash #spSignSlide .sp-d { font-size: .85rem; } #splash #spSignSlide .sp-signbox { margin-top: 8px; gap: 4px; } #splash #spSignSlide .sp-gbtn { padding: 11px; } #splash #spSignSlide .sp-note2 { font-size: .7rem; } #splash #spSignSlide .sp-t { margin: 2px 0; } }
+        .acct-card .acct-b { width: 100%; padding: 13px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.14); color: white; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 8px; }
+        .acct-card .acct-b.g { background: #fff; color: #1f2d4a; border-color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .acct-card .acct-b.g svg { width: 22px; height: 22px; }
+        .acct-card .acct-b:disabled { opacity: .6; }
+        .acct-card .acct-del { background: none; border: none; color: #ff9f9f; text-decoration: underline; font-size: .85rem; margin-top: 10px; cursor: pointer; width: 100%; padding: 8px; }
+        .acct-card .acct-m { font-size: .85rem; opacity: .85; margin-top: 8px; min-height: 1.1em; }
         .small-hint { font-size: 0.78rem; opacity: 0.65; line-height: 1.5; margin-top: 8px; }
     </style>
 </head>
@@ -370,7 +395,10 @@
 <div id="splash" role="dialog" aria-label="Welcome to Score Smart">
     <div class="sp-top"><img class="sp-logo" id="spLogo" src="logo.png" alt="Score Smart logo"><button class="sp-skip" id="spSkip" onclick="closeSplash()">Skip</button></div>
     <div class="sp-track" id="spTrack"><div class="sp-slides" id="spSlides">
-<div class="sp-slide"><div class="sp-chip">👋 Welcome</div><div class="sp-art"><img class="sp-doll" id="spDoll" src="doll.png" alt=""></div><h2 class="sp-t">Hi! I'm your study buddy</h2><div class="sp-d">Welcome to <b>Score Smart</b>, a free study app for Karnataka 2nd PUC English. Let me show you around!</div></div><div class="sp-slide"><div class="sp-chip">📚 Step 1 · Study</div><h2 class="sp-t">Learn the lessons</h2><div class="sp-d">Everything you need to read and revise.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">📖</span><div><b>Chapter Notes</b><span>All 14 lessons, with search</span></div></div><div class="sp-row"><span class="sp-re">✏️</span><div><b>Grammar Practice</b><span>Workbook topics with practice</span></div></div><div class="sp-row"><span class="sp-re">🌙</span><div><b>1 Day Before Exam</b><span>A calm last-minute revision page</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">✍️ Step 2 · Practice</div><h2 class="sp-t">Test yourself</h2><div class="sp-d">Practise the way the exam asks.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">❓</span><div><b>MCQ Practice</b><span>Scores saved, review wrong answers</span></div></div><div class="sp-row"><span class="sp-re">📝</span><div><b>Model Papers</b><span>Full papers to practise</span></div></div><div class="sp-row"><span class="sp-re">📄</span><div><b>Previous Year Papers</b><span>Real question papers</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">📊 Step 3 · Plan &amp; Track</div><h2 class="sp-t">Stay on track</h2><div class="sp-d">Know what to study and keep going.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">🗂️</span><div><b>Blueprint &amp; Pattern</b><span>Marks for every lesson</span></div></div><div class="sp-row"><span class="sp-re">📊</span><div><b>Progress Tracker</b><span>Timer, daily goal, badges, focus sounds</span></div></div><div class="sp-row"><span class="sp-re">🔖</span><div><b>My Saved</b><span>Star questions to find them again</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">🚀 Ready</div><div class="sp-art"><img class="sp-doll" id="spDoll2" src="doll.png" alt=""></div><h2 class="sp-t">All the best!</h2><div class="sp-d">Study a little every day and you will do great.</div><div class="sp-cdline" id="spCountdown"></div></div>
+<div class="sp-slide"><div class="sp-chip">👋 Welcome</div><div class="sp-art"><img class="sp-doll" id="spDoll" src="doll.png" alt=""></div><h2 class="sp-t">Hi! I'm your study buddy</h2><div class="sp-d">Welcome to <b>Score Smart</b>, a free study app for Karnataka 2nd PUC English. Let me show you around!</div></div><div class="sp-slide"><div class="sp-chip">📚 Step 1 · Study</div><h2 class="sp-t">Learn the lessons</h2><div class="sp-d">Everything you need to read and revise.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">📖</span><div><b>Chapter Notes</b><span>All 14 lessons, with search</span></div></div><div class="sp-row"><span class="sp-re">✏️</span><div><b>Grammar Practice</b><span>Workbook topics with practice</span></div></div><div class="sp-row"><span class="sp-re">🌙</span><div><b>1 Day Before Exam</b><span>A calm last-minute revision page</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">✍️ Step 2 · Practice</div><h2 class="sp-t">Test yourself</h2><div class="sp-d">Practise the way the exam asks.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">❓</span><div><b>MCQ Practice</b><span>Scores saved, review wrong answers</span></div></div><div class="sp-row"><span class="sp-re">📝</span><div><b>Model Papers</b><span>Full papers to practise</span></div></div><div class="sp-row"><span class="sp-re">📄</span><div><b>Previous Year Papers</b><span>Real question papers</span></div></div></div></div><div class="sp-slide"><div class="sp-chip">📊 Step 3 · Plan &amp; Track</div><h2 class="sp-t">Stay on track</h2><div class="sp-d">Know what to study and keep going.</div><div class="sp-rows"><div class="sp-row"><span class="sp-re">🗂️</span><div><b>Blueprint &amp; Pattern</b><span>Marks for every lesson</span></div></div><div class="sp-row"><span class="sp-re">📊</span><div><b>Progress Tracker</b><span>Timer, daily goal, badges, focus sounds</span></div></div><div class="sp-row"><span class="sp-re">🔖</span><div><b>My Saved</b><span>Star questions to find them again</span></div></div></div></div><div class="sp-slide" id="spSignSlide"><div class="sp-chip">💾 Save your progress</div><div class="sp-art"><img class="sp-doll" id="spDoll3" data-sign="1" src="doll.png" alt=""></div><h2 class="sp-t">Save your progress</h2><div class="sp-d">Sign in with Google to back up your scores and study time, and use them on another phone.</div>
+<div class="sp-signbox" data-acct="out"><button class="sp-gbtn" data-acct-btn onclick="acctSignIn()"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button><div class="sp-msg" data-acct-msg></div><button class="sp-link" data-acct-btn onclick="spNext()">Skip for now</button><div class="sp-note2">Optional. You can sign in later from Tracker. <a href="privacy.html">Privacy policy</a></div></div>
+<div class="sp-signbox" data-acct="in" style="display:none"><div class="sp-ok">✅ Signed in as <b data-acct-name></b></div><div class="sp-note2">Your progress is backed up. Tap Next to continue.</div></div></div>
+<div class="sp-slide"><div class="sp-chip">🚀 Ready</div><div class="sp-art"><img class="sp-doll" id="spDoll2" src="doll.png" alt=""></div><h2 class="sp-t">All the best!</h2><div class="sp-d">Study a little every day and you will do great.</div><div class="sp-cdline" id="spCountdown"></div></div>
         </div></div>
     <div class="sp-dots" id="spDots"></div>
     <div class="sp-btns"><button class="sp-back" id="spBack" onclick="spGo(-1)" style="display:none">←</button><button class="sp-go" id="spGo" onclick="spNext()">Next →</button></div>
@@ -391,6 +419,7 @@
 })();
 var spI, spN;
 function spInit() {
+    try { if (localStorage.getItem('ss_signed_in') === '1') { var sgn = document.getElementById('spSignSlide'); if (sgn) sgn.remove(); } } catch (e) {}
     var sl = document.querySelectorAll('#splash .sp-slide'); spN = sl.length;
     var d = document.getElementById('spDots'), h = '';
     for (var i = 0; i < spN; i++) h += '<button class="sp-dot" aria-label="Slide ' + (i + 1) + '" onclick="spTo(' + i + ')"></button>';
@@ -408,6 +437,7 @@ function spTo(i) {
     document.getElementById('spSlides').style.transform = 'translateX(-' + (i * 100) + '%)';
     var sl = document.querySelectorAll('#splash .sp-slide'), dt = document.querySelectorAll('#splash .sp-dot');
     for (var k = 0; k < spN; k++) { sl[k].classList.toggle('on', k === i); dt[k].classList.toggle('on', k === i); }
+    if (sl[i].id === 'spSignSlide' && window.acctPreload) window.acctPreload();
     var last = i === spN - 1;
     document.getElementById('spGo').textContent = last ? 'Start studying →' : 'Next →';
     document.getElementById('spBack').style.display = i > 0 ? '' : 'none';
@@ -3743,6 +3773,25 @@ function closeSplash() {
             <div class="stat-row" style="margin-top:8px;"><span class="stat-label">❓ MCQ tests finished</span><span class="stat-value" id="mcqDoneText">0 / 14</span></div>
         </div>
 
+        <!-- ACCOUNT -->
+        <div class="tracker-card acct-card" id="acctCard">
+            <h3>👤 Account &amp; Backup</h3>
+            <div data-acct="out">
+                <p class="small-hint" style="margin:0 0 6px;">Optional. Sign in with Google to back up your scores, study time and saved questions, and use them on another phone.</p>
+                <button class="acct-b g" data-acct-btn onclick="acctSignIn()"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button>
+                <p class="small-hint" style="margin:10px 0 0;">We save only your progress. <a href="privacy.html" style="color:inherit;">Privacy policy</a></p>
+            </div>
+            <div data-acct="in" style="display:none">
+                <p style="margin:0;font-weight:bold;">Signed in as <span data-acct-name></span></p>
+                <p class="small-hint" style="margin:2px 0 0;" data-acct-email></p>
+                <p class="small-hint" style="margin:6px 0 0;" data-acct-last></p>
+                <button class="acct-b" data-acct-btn onclick="acctBackupNow()">☁️ Back up now</button>
+                <button class="acct-b" data-acct-btn onclick="acctSignOut()">Sign out</button>
+                <button class="acct-del" onclick="acctDelete()">Delete my account and backup</button>
+            </div>
+            <div class="acct-m" data-acct-msg></div>
+        </div>
+
         <!-- RESET -->
         <div class="tracker-card">
             <h3>🗑️ Reset</h3>
@@ -4281,7 +4330,7 @@ function showPage(id) {
     if (searchInput) { searchInput.value = ''; searchChapters(''); }
     const hs = document.getElementById('homeSearch');
     if (hs && hs.value) { hs.value = ''; runSearch(''); }
-    if (id === 'progressTracker') { renderTracker(); updateGoalBar(); }
+    if (id === 'progressTracker') { renderTracker(); updateGoalBar(); if (window.acctPreload && !(localStorage.getItem('ss_signed_in') === '1')) window.acctPreload(); }
     if (id === 'savedPage') renderSaved();
     if (id === 'home') updateCountdown();
     updateNav(id);
@@ -5347,6 +5396,235 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW registration failed:', err));
     });
 }
+</script>
+
+<script>
+/* ===== Optional Google sign-in + cloud backup (Firebase). The app works fully without it. ===== */
+(function () {
+    const FB_VER = '13.1.0';
+    const FB_CONFIG = {
+        apiKey: "AIzaSyDPMh7pNY7xzk7WAp3R639IoJh9GERwj_o",
+        authDomain: "score-smart-c7bf5.firebaseapp.com",
+        projectId: "score-smart-c7bf5",
+        storageBucket: "score-smart-c7bf5.firebasestorage.app",
+        messagingSenderId: "660716830258",
+        appId: "1:660716830258:web:eff791ddfd3733e490062b"
+    };
+    const SYNC_KEYS = ['ss_sessions', 'ss_mcq_best', 'ss_mcq_last', 'ss_goal', 'ss_subjects', 'ss_done', 'ss_saved'];
+    const FLAG = 'ss_signed_in';       // only load Firebase on start if the student signed in before
+    const LAST = 'ss_last_backup';
+    let fb = null, user = null, pushTimer = null, merging = false, busy = false;
+
+    const $ = id => document.getElementById(id);
+    const say = m => { try { if (typeof toast === 'function') toast(m); } catch (e) {} };
+    function lget(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lset(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    function lrem(k) { try { localStorage.removeItem(k); } catch (e) {} }
+    function parse(v, d) { try { return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
+
+    /* ---------- watch our own data keys: back up a few seconds after a change ---------- */
+    const _set = Storage.prototype.setItem, _rm = Storage.prototype.removeItem;
+    Storage.prototype.setItem = function (k) { _set.apply(this, arguments); if (this === localStorage && !merging && SYNC_KEYS.indexOf(k) > -1) schedulePush(); };
+    Storage.prototype.removeItem = function (k) { _rm.apply(this, arguments); if (this === localStorage && !merging && SYNC_KEYS.indexOf(k) > -1) schedulePush(); };
+
+    function readLocal() { const o = {}; SYNC_KEYS.forEach(k => { const v = lget(k); if (v !== null) o[k] = v; }); return o; }
+
+    /* ---------- merge: never lose anything from either side ---------- */
+    function uniq(arr) { const s = new Set(), out = []; arr.forEach(x => { const key = JSON.stringify(x); if (!s.has(key)) { s.add(key); out.push(x); } }); return out; }
+    function mergeData(L, C) {
+        const out = {};
+        const sess = uniq([].concat(parse(C.ss_sessions, []), parse(L.ss_sessions, [])).filter(x => x && x.date));
+        sess.sort((a, b) => String(a.date).localeCompare(String(b.date)));
+        if (sess.length) out.ss_sessions = JSON.stringify(sess);
+        const best = {}, cb = parse(C.ss_mcq_best, {}), lb = parse(L.ss_mcq_best, {});
+        Object.keys(cb).concat(Object.keys(lb)).forEach(k => { best[k] = Math.max(Number(cb[k]) || 0, Number(lb[k]) || 0); });
+        if (Object.keys(best).length) out.ss_mcq_best = JSON.stringify(best);
+        const last = Object.assign({}, parse(C.ss_mcq_last, {}), parse(L.ss_mcq_last, {}));
+        if (Object.keys(last).length) out.ss_mcq_last = JSON.stringify(last);
+        const lg = parseInt(parse(L.ss_goal, 0), 10) || 0, cg = parseInt(parse(C.ss_goal, 0), 10) || 0;
+        if (lg || cg) out.ss_goal = JSON.stringify(lg || cg);
+        const subs = uniq([].concat(parse(L.ss_subjects, []), parse(C.ss_subjects, [])));
+        if (subs.length) out.ss_subjects = JSON.stringify(subs);
+        const done = Object.assign({}, parse(C.ss_done, {}), parse(L.ss_done, {}));
+        if (Object.keys(done).length) out.ss_done = JSON.stringify(done);
+        const saved = uniq([].concat(parse(L.ss_saved, []), parse(C.ss_saved, [])));
+        if (saved.length) out.ss_saved = JSON.stringify(saved);
+        return out;
+    }
+    function sameData(a, b) { return SYNC_KEYS.every(k => (a[k] || null) === (b[k] || null)); }
+
+    /* ---------- load Firebase only when needed ---------- */
+    async function loadFB() {
+        if (fb) return fb;
+        const base = 'https://www.gstatic.com/firebasejs/' + FB_VER + '/';
+        const [appM, authM, fsM] = await Promise.all([
+            import(base + 'firebase-app.js'), import(base + 'firebase-auth.js'), import(base + 'firebase-firestore.js')]);
+        const app = appM.initializeApp(FB_CONFIG);
+        const auth = authM.getAuth(app);
+        const db = fsM.getFirestore(app);
+        fb = { auth, db, A: authM, F: fsM };
+        authM.onAuthStateChanged(auth, onUser);
+        return fb;
+    }
+
+    async function onUser(u) {
+        user = u || null;
+        if (user) lset(FLAG, '1'); else lrem(FLAG);
+        paintAccount();
+        if (user) { try { await firstSync(); } catch (e) { setMsg('Could not check your backup. We will try again later.'); console.log(e); } }
+    }
+
+    async function firstSync() {
+        const ref = fb.F.doc(fb.db, 'users', user.uid);
+        const snap = await fb.F.getDoc(ref);
+        const L = readLocal();
+        if (snap.exists()) {
+            let C = {};
+            try { C = JSON.parse(snap.data().data) || {}; } catch (e) { C = {}; }
+            const M = mergeData(L, C);
+            if (!sameData(M, L)) {
+                merging = true;
+                SYNC_KEYS.forEach(k => { if (M[k] !== undefined) lset(k, M[k]); else lrem(k); });
+                merging = false;
+                await pushNow();
+                if (!sessionStorage.getItem('ss_reloaded')) { sessionStorage.setItem('ss_reloaded', '1'); try { sessionStorage.setItem('ss_splash_seen', '1'); } catch (e) {} location.reload(); return; }
+            } else if (!sameData(M, C)) { await pushNow(); }
+            else { lset(LAST, String(Date.now())); }
+        } else {
+            await pushNow();
+        }
+        paintAccount();
+    }
+
+    function schedulePush() {
+        if (!user) return;
+        clearTimeout(pushTimer);
+        setMsg('Waiting to back up…');
+        pushTimer = setTimeout(() => { pushNow().catch(() => {}); }, 3000);
+    }
+    async function pushNow() {
+        if (!user || !fb) return;
+        try {
+            await fb.F.setDoc(fb.F.doc(fb.db, 'users', user.uid), { data: JSON.stringify(readLocal()), updatedAt: Date.now() });
+            lset(LAST, String(Date.now()));
+            setMsg('');
+        } catch (e) {
+            console.log(e);
+            setMsg('Backup did not finish. It will try again when you are online.');
+            throw e;
+        }
+        paintAccount();
+    }
+    window.addEventListener('online', () => { if (user) schedulePush(); });
+
+    /* ---------- account display (sign-in slide + Tracker card) ---------- */
+    function $$(sel) { return document.querySelectorAll(sel); }
+    function setMsg(t) { $$('[data-acct-msg]').forEach(e => { e.textContent = t || ''; }); paintLast(); }
+    function paintLast() {
+        const t = parseInt(lget(LAST) || '0', 10);
+        const txt = t ? 'Last backup: ' + new Date(t).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) : 'Not backed up yet';
+        $$('[data-acct-last]').forEach(e => { e.textContent = txt; });
+    }
+    function paintAccount() {
+        const nm = user ? (user.displayName || user.email || 'Account').split(' ')[0] : '';
+        $$('[data-acct="out"]').forEach(e => { e.style.display = user ? 'none' : 'block'; });
+        $$('[data-acct="in"]').forEach(e => { e.style.display = user ? 'block' : 'none'; });
+        $$('[data-acct-name]').forEach(e => { e.textContent = nm; });
+        $$('[data-acct-email]').forEach(e => { e.textContent = (user && user.email) || ''; });
+        $$('[data-acct-btn]').forEach(e => { e.disabled = busy; });
+        paintLast();
+    }
+    function setBusy(v) {
+        busy = v;
+        $$('.sp-doll[data-sign]').forEach(d => { d.classList.toggle('busy', v); });
+        paintAccount();
+    }
+    // load the sign-in code a little early, so the Google window can open straight after a tap
+    window.acctPreload = function () { if (!fb && navigator.onLine) loadFB().catch(e => console.log(e)); };
+    function celebrate() {
+        const d = document.querySelector('.sp-doll[data-sign]');
+        if (d) { d.classList.remove('busy'); d.classList.add('joy'); setTimeout(() => d.classList.remove('joy'), 1700); }
+        const sp = $('splash');
+        if (sp && sp.style.display !== 'none' && !sp.classList.contains('hide') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const cols = ['#ffd447', '#1d6fd1', '#ff6b9d', '#3ddc97', '#8f7bff', '#ff9f43'];
+            for (let i = 0; i < 34; i++) {
+                const c = document.createElement('i');
+                c.className = 'sp-conf';
+                c.style.left = (4 + Math.random() * 92) + '%';
+                c.style.background = cols[i % cols.length];
+                c.style.animationDelay = (Math.random() * .35) + 's';
+                c.style.animationDuration = (1.4 + Math.random() * 1.1) + 's';
+                c.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+                c.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+                sp.appendChild(c);
+                setTimeout(() => { c.remove(); }, 3000);
+            }
+        }
+        say('🎉 Signed in! Your progress is saved.');
+    }
+
+    async function ready() {
+        if (!navigator.onLine) { setMsg('You are offline. Connect to the internet to sign in or back up.'); return false; }
+        try { await loadFB(); return true; } catch (e) { console.log(e); setMsg('Could not load sign-in. Check your internet and try again.'); return false; }
+    }
+    window.acctSignIn = async function () {
+        if (busy || !(await ready())) return;
+        setBusy(true); setMsg('Opening Google sign-in…');
+        try {
+            await fb.A.signInWithPopup(fb.auth, new fb.A.GoogleAuthProvider());
+            setMsg('');
+            celebrate();
+        } catch (e) {
+            console.log(e);
+            const c = e && e.code;
+            if (c === 'auth/popup-closed-by-user' || c === 'auth/cancelled-popup-request') setMsg('');
+            else setMsg('Sign-in did not work (' + (c || 'error') + '). Please try again, or skip for now.');
+        }
+        setBusy(false);
+    };
+    window.acctBackupNow = async function () {
+        if (!user || busy || !(await ready())) return;
+        setBusy(true); setMsg('Backing up…');
+        try { await pushNow(); say('✅ Backed up'); } catch (e) {}
+        setBusy(false);
+    };
+    window.acctSignOut = async function () {
+        if (!fb || busy) return;
+        if (!(await ssConfirm('Your progress stays on this phone. You can sign in again any time.', { title: 'Sign out?', ok: 'Sign out' }))) return;
+        setBusy(true);
+        try { if (pushTimer) { clearTimeout(pushTimer); await pushNow().catch(() => {}); } await fb.A.signOut(fb.auth); say('Signed out. Your data stays on this phone.'); } catch (e) { console.log(e); }
+        setBusy(false);
+    };
+    window.acctDelete = async function () {
+        if (!user || busy || !(await ready())) return;
+        if (!(await ssConfirm('This removes your sign-in and the data saved online. Your progress stays on this phone.\n\nThis cannot be undone.', { title: 'Delete account and backup?', ok: 'Yes, delete', danger: true }))) return;
+        setBusy(true); setMsg('Deleting…');
+        try {
+            clearTimeout(pushTimer);
+            await fb.F.deleteDoc(fb.F.doc(fb.db, 'users', user.uid));
+            try { await fb.A.deleteUser(fb.auth.currentUser); }
+            catch (e) {
+                if (e && e.code === 'auth/requires-recent-login') {
+                    await fb.A.reauthenticateWithPopup(fb.auth.currentUser, new fb.A.GoogleAuthProvider());
+                    await fb.A.deleteUser(fb.auth.currentUser);
+                } else throw e;
+            }
+            lrem(LAST); lrem(FLAG);
+            say('Your account and backup were deleted.');
+            setMsg('');
+        } catch (e) {
+            console.log(e);
+            setMsg('Could not delete (' + ((e && e.code) || 'error') + '). Please try again, or email rpriya9606@gmail.com.');
+        }
+        setBusy(false);
+    };
+
+    /* ---------- on start: only wake Firebase up if the student signed in before ---------- */
+    window.addEventListener('load', () => {
+        paintAccount();
+        if (lget(FLAG) === '1' && navigator.onLine) setTimeout(() => { loadFB().catch(e => console.log(e)); }, 1500);
+    });
+})();
 </script>
 
 </body>
